@@ -25,7 +25,11 @@
             
             <div id="content-wrapper">
                 @include('components.top-navigation')
-                @yield('content')
+
+                <br />
+                <div class="container-fluid">
+                    @yield('content')
+                </div>
             </div>
         </div>
     </body>

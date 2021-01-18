@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\WeatherController;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,5 +17,10 @@ use App\Http\Controllers\HomeController;
 */
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
+
+/**
+ * Weather routes 
+ */
+Route::get('/weather/update', [WeatherController::class, 'update'])->name('weather.update');
 
 require __DIR__.'/auth.php';
