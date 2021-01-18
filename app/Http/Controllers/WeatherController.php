@@ -25,6 +25,23 @@ class WeatherController extends Controller
     }
 
     /**
+     * Show the home view
+     */
+    public function index()
+    {
+        $weather = Weather::latest()->first();
+
+        $data = [
+            'title'   => 'Weather', 
+            'page'    => 'weather',
+            'weather' => $weather,
+        ];
+
+        return view('weather.index')->with($data);
+
+    }
+
+    /**
      * Update the weather
      */
     public function update(Request $request)

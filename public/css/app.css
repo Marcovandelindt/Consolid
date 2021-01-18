@@ -10058,3 +10058,33 @@ h3 {
   background-repeat: repeat-x;
   color: #fff;
 }
+
+.card-weather-detail {
+  background: #e1ecff;
+  background-image: linear-gradient(to left bottom, #d6eef6, #dff0fa, #e7f3fc, #eff6fe, #f6f9ff);
+}
+.card-weather-detail .card-body {
+  background: url(https://res.cloudinary.com/dxfq3iotg/image/upload/v1557323760/weather.svg) no-repeat center;
+  background-size: cover;
+  padding: 1.88rem 1.81rem;
+}
+.card-weather-detail .weather-date-location {
+  padding: 0 0 38px;
+}
+.card-weather-detail .day-name {
+  font-size: 1.56rem;
+  font-weight: bold;
+}
+.card-weather-detail .text-gray {
+  color: #969696;
+}
+.card-weather-detail .weather-data {
+  padding: 0 0 4.75rem;
+}
+
+.custom-table {
+  margin-left: -10px;
+}
+.custom-table td {
+  border: 0px;
+}

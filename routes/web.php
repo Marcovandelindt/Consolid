@@ -21,6 +21,7 @@ Route::get('/', [HomeController::class, 'index'])->name('home');
 /**
  * Weather routes 
  */
+Route::get('/weather', [WeatherController::class, 'index'])->name('weather');
 Route::get('/weather/update', [WeatherController::class, 'update'])->name('weather.update');
 
 require __DIR__.'/auth.php';

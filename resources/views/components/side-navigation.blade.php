@@ -47,5 +47,9 @@
             <i class="fas fa-futbol sidebar-icon"></i>
             <span class="item-name">Football</span>
         </a>
+        <a href="{{ route('weather') }}" class="list-group-item list-group-item-action bg-light">
+            <i class="fas fa-sun sidebar-icon"></i>
+            <span class="item-name">Weather</span>
+        </a>
     </div>
 </div>
