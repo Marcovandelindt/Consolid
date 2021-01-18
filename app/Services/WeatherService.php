@@ -11,7 +11,10 @@ class WeatherService
      */
     public function canInsertNewRecord()
     {
-        if (Weather::latest()->first() && strtotime(Weather::latest()->first()) < strtotime('-15 minutes')) {
+        $lastInsertedTime = strtotime(Weather::latest()->first()->created_at);
+        $timeToCheck      = strtotime("-15 minutes");
+
+        if ($lastInsertedTime >= $timeToCheck) {
             return false;
         }
 
