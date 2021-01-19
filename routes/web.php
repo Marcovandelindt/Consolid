@@ -3,6 +3,9 @@
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\Music\MusicAuthenticateController;
+use App\Http\Controllers\Music\MusicController;
+use App\Http\Controllers\Music\MusicRequestAccessTokenController;
 use App\Http\Controllers\WeatherController;
 
 /*
@@ -23,5 +26,12 @@ Route::get('/', [HomeController::class, 'index'])->name('home');
  */
 Route::get('/weather', [WeatherController::class, 'index'])->name('weather');
 Route::get('/weather/update', [WeatherController::class, 'update'])->name('weather.update');
+
+/**
+ * Music Routes
+ */
+Route::get('/music', [MusicController::class, 'index'])->name('music');
+Route::get('/music/authenticate', [MusicAuthenticateController::class, 'index'])->name('music.authenticate');
+Route::get('/music/request-access-token', [MusicRequestAccessTokenController::class, 'store'])->name('music.request');
 
 require __DIR__.'/auth.php';
