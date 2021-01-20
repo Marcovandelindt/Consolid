@@ -5,6 +5,8 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
+use App\Models\Artist;
+
 class Track extends Model
 {
     use HasFactory;
@@ -19,5 +21,11 @@ class Track extends Model
         'track_number'
     ];
 
-    
+    /**
+     * The artists that belong to a track
+     */
+    public function artists()
+    {
+        return $this->belongsToMany(Artist::class);
+    }
 }

@@ -34,6 +34,10 @@ class ArtistService
                     $artist->followers  = $artistData->followers->total;
 
                     $artist->save();
+
+                    if (!$artist->hasTrack($trackId)) {
+                        $artist->tracks()->attach($trackId);
+                    }
                 }
             }
         }
