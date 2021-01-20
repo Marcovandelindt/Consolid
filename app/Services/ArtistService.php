@@ -2,61 +2,48 @@
 
 namespace App\Services;
 
-use SpotifyWebAPI\SpotifyWebAPI;
-
-use App\Services\GenreService;
-
-use App\Models\Track;
 use App\Models\Artist;
-use App\Models\Genre;
 
 class ArtistService 
 {
-    protected $genreService;
-
     /**
-     * Constructor
+     * Create a new artist
+     * 
+     * @param object                       $data
+     * @param \SpotifyWebAPI\SpotifyWebAPI $api
+     * 
+     * @return App\Models\Artist $artist
      */
-    public function __construct()
+    public function createArtist($data, $api)
     {
-        $this->genreService = new GenreService;
+        $artistData = $api->getArtist($data->id);
+        
+        if (!empty($artistData)) {
+            $artist = new Artist;
+
+            $artist->spotify_id = $artistData->id;
+            $artist->name       = $artistData->name;
+            $artist->image      = !empty($artistData->images) ? $artistData->images[0]->url : '';
+            $artist->popularity = $artistData->popularity;
+            $artist->followers  = $artistData->followers->total;
+
+            $artist->save();
+
+            return $artist;
+        }
     }
 
     /**
-     * Add the artists to a track
+     * Update the playcount of an artist
      * 
-     * @param array                         $artists
-     * @param id                            $trackId
-     * @param \SpotifyWebAPI\SpotifyWebAPI  $api
+     * @param \App\Models\Artist $artist
      * 
      * @return void
      */
-    public function addArtists($artists, $trackId, $api): void
+    public function updatePlayCount(Artist $artist): void 
     {
-        if (!empty($artists) && Track::where('id', $trackId)->first()   ) {
-            foreach ($artists as $data) {
-                if (!Artist::where('spotify_id', $data->id)->first()) {
-                    $artistData = $api->getArtist($data->id);
-
-                    $artist = new Artist();
-
-                    $artist->spotify_id = $artistData->id;
-                    $artist->name       = $artistData->name;
-                    $artist->image      = !empty($artistData->images) ? $artistData->images[0]->url : '';
-                    $artist->popularity = $artistData->popularity;
-                    $artist->followers  = $artistData->followers->total;
-
-                    $artist->save();
-
-                    if (!$artist->hasTrack($trackId)) {
-                        $artist->tracks()->attach($trackId);
-                    }
-
-                    foreach ($artistData->genres as $genreData) {
-                        $this->genreService->addGenre($genreData);
-                    }
-                }
-            }
-        }
+        $artist->play_count = $artist->play_count + 1;
+        
+        $artist->save();
     }
 }

@@ -32,16 +32,14 @@ class GenreService
      * 
      * @return void
      */
-    public function addGenre($genreData): void
+    public function createGenre($genreData): void
     {
         $systemName = $this->createSystemName($genreData);
                         
-        if (!Genre::where('system_name', $systemName)->first()) {
-            $genre              = new Genre();
-            $genre->name        = $genreData;
-            $genre->system_name = $systemName;
+        $genre              = new Genre();
+        $genre->name        = $genreData;
+        $genre->system_name = $systemName;
 
-            $genre->save();
-        }
+        $genre->save();
     }
 }

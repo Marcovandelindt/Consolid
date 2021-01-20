@@ -17,6 +17,7 @@ class Artist extends Model
         'image',
         'popularity',
         'followers',
+        'play_count',
     ];
 
     /**
@@ -37,7 +38,7 @@ class Artist extends Model
     public function hasTrack($trackId): bool 
     {
         return $this->tracks()
-            ->where('track_id', $trackId
-            )->exists();
+            ->where('track_id', $trackId)
+            ->exists();
     }
 }

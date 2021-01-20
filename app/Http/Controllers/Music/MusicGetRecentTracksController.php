@@ -10,12 +10,21 @@ use Illuminate\Support\Facades\Auth;
 use SpotifyWebAPI\SpotifyWebAPI;
 use SpotifyWebAPI\Session;
 
-use App\Services\MusicService;
+use App\Models\Track;
+use App\Models\PlayedTrack;
+use App\Models\Artist;
+use App\Models\Genre;
+use App\Models\Album;
 
+use App\Services\TrackService;
+use App\Services\PlayedTrackService;
+use App\Services\ArtistService;
+use App\Services\GenreService;
+use App\Services\AlbumService;
 
 class MusicGetRecentTracksController extends Controller 
 {
-    protected $musicService;
+    protected $trackService;
 
     /**
      * Constructor
@@ -25,7 +34,11 @@ class MusicGetRecentTracksController extends Controller
     {
         $this->middleware('auth');
 
-        $this->musicService = new MusicService;
+        $this->trackService       = new TrackService;
+        $this->playedTrackService = new PlayedTrackService;
+        $this->artistService      = new ArtistService;
+        $this->genreService       = new GenreService;
+        $this->albumService       = new AlbumService;
     }
 
     /**
@@ -40,8 +53,55 @@ class MusicGetRecentTracksController extends Controller
 
         $tracks = $api->getMyRecentTracks(['limit' => 50]);
 
-        if (!empty($tracks)) {
-           $this->musicService->addTracks($tracks, $api);
+        foreach ($tracks->items as $trackData) {
+
+            # Save the track
+            if (!Track::where('spotify_id', $trackData->track->id)->first()) {
+                $track = $this->trackService->createNewTrack($trackData, $api);
+            } else {
+                $track = Track::where('spotify_id', $trackData->track->id)->first();
+            }
+
+            # Save the played track
+            $timestamp = strtotime($trackData->played_at);
+            if (!PlayedTrack::where('track_id', $track->id)->where('played_at', $timestamp)->first()) {
+                $this->playedTrackService->savePlayedTrack($trackData, $track);
+            }
+
+            # Save the artists
+            foreach ($trackData->track->artists as $artistData) {
+                if (!Artist::where('spotify_id', $artistData->id)->first()) {
+                    $artist = $this->artistService->createArtist($artistData, $api);
+                } else {
+                    $artist = Artist::where('spotify_id', $artistData->id)->first();
+                }
+
+                $this->artistService->updatePlayCount($artist);
+
+                if (!$artist->hasTrack($track->id)) {
+                    $artist->tracks()->attach($track->id);
+                }
+
+                # Save the genre
+                foreach ($api->getArtist($artist->spotify_id)->genres as $genre) {
+                    $systemName = $this->genreService->createSystemName($genre);
+                    if (!Genre::where('system_name', $systemName)->first()) {
+                        $this->genreService->createGenre($genre);
+                    }
+                }
+            }
+
+            # Save the album
+            if (!Album::where('spotify_id', $trackData->track->album->id)->first()) {
+                $album = $this->albumService->createNewAlbum($trackData->track->album, $api);
+            } else {
+                $album = Album::where('spotify_id', $trackData->track->album->id)->first();
+            }
+
+            if (!$track->album_id) {
+                $track->album_id = $album->id;
+                $track->save();
+            }
         }
 
         return redirect()->route('music');
