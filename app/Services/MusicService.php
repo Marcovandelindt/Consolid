@@ -60,7 +60,7 @@ class MusicService
     public function addTracks($tracks, $api)
     {
         if (!empty($tracks)) {
-            foreach ($tracks->items as $data) {
+            foreach ($tracks->items as $data) {                
                 
                 # Check if track exists
                 if (!Track::where('spotify_id', $data->track->id)->first()) {

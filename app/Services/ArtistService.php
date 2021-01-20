@@ -4,11 +4,24 @@ namespace App\Services;
 
 use SpotifyWebAPI\SpotifyWebAPI;
 
+use App\Services\GenreService;
+
 use App\Models\Track;
 use App\Models\Artist;
+use App\Models\Genre;
 
 class ArtistService 
 {
+    protected $genreService;
+
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->genreService = new GenreService;
+    }
+
     /**
      * Add the artists to a track
      * 
@@ -37,6 +50,10 @@ class ArtistService
 
                     if (!$artist->hasTrack($trackId)) {
                         $artist->tracks()->attach($trackId);
+                    }
+
+                    foreach ($artistData->genres as $genreData) {
+                        $this->genreService->addGenre($genreData);
                     }
                 }
             }
