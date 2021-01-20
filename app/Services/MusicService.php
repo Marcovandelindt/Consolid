@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use App\Models\Track;
 class MusicService 
 {
     /**
@@ -34,6 +35,38 @@ class MusicService
      */
     public function getAllScopes()
     {
-        return self::SCOPES;
+       return [
+           'scope' => self::SCOPES
+       ];
+    }
+
+    /**
+     * Add tracks
+     * 
+     * @param array $tracks
+     * @param \SpotifyWebAPI\SpotifyWebAPI $api
+     */
+    public function addTracks($tracks, $api)
+    {
+        if (!empty($tracks)) {
+            foreach ($tracks->items as $data) {
+                
+                # Check if track exists
+                if (!Track::where('spotify_id', $data->track->id)->first()) {
+                    $trackData = $api->getTrack($data->track->id);
+
+                    $track = new Track();
+
+                    $track->spotify_id   = $trackData->id;
+                    $track->name         = $trackData->name;
+                    $track->duration_ms  = $trackData->duration_ms;
+                    $track->disc_number  = $trackData->disc_number;
+                    $track->popularity   = $trackData->popularity;
+                    $track->track_number = $trackData->track_number;
+
+                    $track->save();
+                }
+            }
+        }
     }
 }
