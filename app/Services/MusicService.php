@@ -3,6 +3,9 @@
 namespace App\Services;
 
 use App\Models\Track;
+
+use App\Services\ArtistService;
+
 class MusicService 
 {
     /**
@@ -31,6 +34,14 @@ class MusicService
     ];
 
     /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->artistService = new ArtistService;
+    }
+
+    /**
      * Get all the scopes
      */
     public function getAllScopes()
@@ -55,6 +66,7 @@ class MusicService
                 if (!Track::where('spotify_id', $data->track->id)->first()) {
                     $trackData = $api->getTrack($data->track->id);
 
+
                     $track = new Track();
 
                     $track->spotify_id   = $trackData->id;
@@ -65,6 +77,10 @@ class MusicService
                     $track->track_number = $trackData->track_number;
 
                     $track->save();
+
+                    # Save the artists
+                    $this->artistService->addArtists($trackData->artists, $track->id, $api);
+
                 }
             }
         }

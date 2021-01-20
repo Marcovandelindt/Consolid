@@ -44,6 +44,6 @@ class MusicGetRecentTracksController extends Controller
            $this->musicService->addTracks($tracks, $api);
         }
 
-        return redirect();
+        return redirect()->route('music');
     }
 }
