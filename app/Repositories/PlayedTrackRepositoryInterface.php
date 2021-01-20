@@ -10,5 +10,7 @@ use App\Models\PlayedTrack;
 
 interface PlayedTrackRepositoryInterface 
 {
-    public function today(): Collection;
+    public function today();
+
+    public function listeningTimeToday();
 }

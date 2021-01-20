@@ -10,4 +10,12 @@ class PlayedTrack extends Model
     use HasFactory;
 
     public $timestamps = false;
+    
+    /**
+     * Get the track associated with the played track 
+     */
+    public function track()
+    {
+        return $this->belongsTo(Track::class);
+    }
 }

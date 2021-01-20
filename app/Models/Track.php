@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 use App\Models\Artist;
+use App\Models\Album;
+use App\Models\PlayedTrack;
 
 class Track extends Model
 {
@@ -27,5 +29,21 @@ class Track extends Model
     public function artists()
     {
         return $this->belongsToMany(Artist::class);
+    }
+
+    /**
+     * Get the albuming beloning to this track
+     */
+    public function album()
+    {
+        return $this->belongsTo(Album::class);
+    }
+
+    /**
+     * Get the played tracks beloning to this track
+     */
+    public function played()
+    {
+        return $this->hasMany(PlayedTrack::class);
     }
 }
