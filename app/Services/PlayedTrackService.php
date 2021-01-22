@@ -20,7 +20,7 @@ class PlayedTrackService
         $playedTrack = new PlayedTrack;
 
         $playedTrack->track_id    = $track->id;
-        $playedTrack->played_from = $data->context->type;
+        $playedTrack->played_from = (!empty($data->context->type) ? $data->context->type : '');
         $playedTrack->played_at   = strtotime($data->played_at);
         $playedTrack->played_date = date('Y-m-d', strtotime($data->played_at));
 
