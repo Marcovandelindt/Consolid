@@ -13,4 +13,6 @@ interface PlayedTrackRepositoryInterface
     public function today();
 
     public function listeningTimeToday();
+
+    public function all();
 }

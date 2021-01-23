@@ -46,4 +46,14 @@ class Track extends Model
     {
         return $this->hasMany(PlayedTrack::class);
     }
+
+    /**
+     * Get the total amount of times a track has been played
+     * 
+     * @return integer
+     */
+    public function getPlayCount(): int
+    {
+        return count($this->played);
+    }
 }

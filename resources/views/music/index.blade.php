@@ -7,13 +7,14 @@
 
 <div class="row">
     <div class="col-xl-3">
-        <div class="card custom-card spotify-card">
+        <div class="card custom-card spotify-card statistics-card">
             <div class="card-content">
                 <div class="card-body">
                     <div class="media d-flex">
                         <div class="media-body text-white text-left align-self-bottom mt-3">
                             <h5 class="d-block mb-1 font-medium-1">Played Tracks Today</h5>
                             <h1 class="text-white mb-0">{{ count($playedTracks) }}</h1>
+                            <i>{{ $totalPlayedTracks }} tracks played in total</i>
                         </div>
                         <div class="align-self-top">
                             <i class="float-right icon">
@@ -26,7 +27,7 @@
         </div>
     </div>
      <div class="col-xl-3">
-        <div class="card custom-card album-card">
+        <div class="card custom-card album-card statistics-card">
             <div class="card-content">
                 <div class="card-body">
                     <div class="media d-flex">
@@ -45,7 +46,7 @@
         </div>
     </div>
      <div class="col-xl-3">
-        <div class="card custom-card artist-card">
+        <div class="card custom-card artist-card statistics-card">
             <div class="card-content">
                 <div class="card-body">
                     <div class="media d-flex">
@@ -64,7 +65,7 @@
         </div>
     </div>
      <div class="col-xl-3">
-        <div class="card custom-card listening-time-card">
+        <div class="card custom-card listening-time-card statistics-card">
             <div class="card-content">
                 <div class="card-body">
                     <div class="media d-flex">
@@ -98,7 +99,7 @@
                         @if (!empty($playedTracks))
                             @foreach ($playedTracks as $playedTrack)
                                 <div class="media">
-                                    <a href="#" class="media-left">
+                                    <a href="{{ route('track', ['id' => $playedTrack->track_id]) }}" class="media-left">
                                         <img src="{{ $playedTrack->track->album->image }}" height="64" />
                                     </a>
                                     <div class="media-body">
