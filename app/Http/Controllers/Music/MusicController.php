@@ -34,13 +34,12 @@ class MusicController extends Controller
     public function index()
     {
         return view('music.index', [
-            'title'         => 'Music',
-            'page'          => 'music',
-            'playedTracks'  => $this->playedTrackRepository->today(),
-            'playedAlbums'  => $this->albumRepository->today(),
-            'playedArtists' => $this->artistRepository->today(),
-            'listeningTime' => $this->playedTrackRepository->calculateListeningTime('daily'),
-            'totalPlayedTracks' => count($this->playedTrackRepository->all()),
+            'title'             => 'Music',
+            'page'              => 'music',
+            'tracks'            => $this->playedTrackRepository->today(),
+            'albums'            => $this->albumRepository->today(),
+            'artists'           => $this->artistRepository->today(),
+            'listeningTime'     => $this->playedTrackRepository->calculateListeningTime('daily'),
         ]);
     }
 }

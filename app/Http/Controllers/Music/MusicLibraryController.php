@@ -41,10 +41,10 @@ class MusicLibraryController extends Controller
     {
         $data = [
             'title'                 => 'Library',
-            'totalPlayedTracks'     => $this->playedTrackRepository->all(),
-            'totalPlayedAlbums'     => $this->albumRepository->all(),
-            'totalPlayedArtists'    => $this->artistRepository->all(),
-            'totalListeningTime'    => $this->playedTrackRepository->calculateListeningTime('total'),
+            'tracks'                => $this->playedTrackRepository->all(),
+            'albums'                => $this->albumRepository->all(),
+            'artists'               => $this->artistRepository->all(),
+            'listeningTime'         => $this->playedTrackRepository->calculateListeningTime('total'),
             'paginatedPlayedTracks' => $this->playedTrackRepository->all(25),
             'topTracks'             => $this->playedTrackRepository->getTopTracks(5),
         ]; 
