@@ -53,4 +53,14 @@ class PlayedTrackRepository implements PlayedTrackRepositoryInterface
     {
         return PlayedTrack::all();
     }
+
+     /**
+     * Get all played tracks
+     */
+    public function listeningTimeTotal()
+    {
+        $all = PlayedTrack::all();
+
+        return $this->playedTrackService->calculateTotalListeningTime($all);
+    }
 }

@@ -3,6 +3,7 @@
 namespace App\Repositories\Eloquent;
 
 use App\Models\Album;
+use App\Models\Artist;
 use App\Models\PlayedTrack;
 use App\Repositories\ArtistRepositoryInterface;
 use App\Repositories\PlayedTrackRepository;
@@ -24,5 +25,13 @@ class ArtistRepository implements ArtistRepositoryInterface
         }
 
         return $artists;
+    }
+
+    /**
+     * Get all played artists
+     */
+    public function all()
+    {
+        return Artist::all();
     }
 }

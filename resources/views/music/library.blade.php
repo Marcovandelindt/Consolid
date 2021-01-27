@@ -1,6 +1,9 @@
 @extends('layouts.app')
 
 @section('content')
+@extends('layouts.app')
+
+@section('content')
 
 <h1>{{ $title }}</h1>
 <hr />
@@ -12,9 +15,8 @@
                 <div class="card-body">
                     <div class="media d-flex">
                         <div class="media-body text-white text-left align-self-bottom mt-3">
-                            <h5 class="d-block mb-1 font-medium-1">Played Tracks Today</h5>
-                            <h1 class="text-white mb-0">{{ count($playedTracks) }}</h1>
-                            <i>{{ $totalPlayedTracks }} tracks played in total</i>
+                            <h5 class="d-block mb-1 font-medium-1">Played Tracks Total</h5>
+                            <h1 class="text-white mb-0">{{ count($totalPlayedTracks) }}</h1>
                         </div>
                         <div class="align-self-top">
                             <i class="float-right icon">
@@ -26,14 +28,14 @@
             </div>
         </div>
     </div>
-     <div class="col-xl-3">
+    <div class="col-xl-3">
         <div class="card custom-card album-card statistics-card">
             <div class="card-content">
                 <div class="card-body">
                     <div class="media d-flex">
                         <div class="media-body text-white text-left align-self-bottom mt-3">
-                            <h5 class="d-block mb-1 font-medium-1">Played Albums Today</h5>
-                            <h1 class="text-white mb-0">{{ count($playedAlbums) }}</h1>
+                            <h5 class="d-block mb-1 font-medium-1">Played Albums Total</h5>
+                            <h1 class="text-white mb-0">{{ count($totalPlayedAlbums) }}</h1>
                         </div>
                         <div class="align-self-top">
                             <i class="float-right icon">
@@ -45,14 +47,14 @@
             </div>
         </div>
     </div>
-     <div class="col-xl-3">
+    <div class="col-xl-3">
         <div class="card custom-card artist-card statistics-card">
             <div class="card-content">
                 <div class="card-body">
                     <div class="media d-flex">
                         <div class="media-body text-white text-left align-self-bottom mt-3">
-                            <h5 class="d-block mb-1 font-medium-1">Played Artists Today</h5>
-                            <h1 class="text-white mb-0">{{ count($playedArtists) }}</h1>
+                            <h5 class="d-block mb-1 font-medium-1">Played Artists Total</h5>
+                            <h1 class="text-white mb-0">{{ count($totalPlayedArtists) }}</h1>
                         </div>
                         <div class="align-self-top">
                             <i class="float-right icon">
@@ -64,14 +66,14 @@
             </div>
         </div>
     </div>
-     <div class="col-xl-3">
+    <div class="col-xl-3">
         <div class="card custom-card listening-time-card statistics-card">
             <div class="card-content">
                 <div class="card-body">
                     <div class="media d-flex">
                         <div class="media-body text-white text-left align-self-bottom mt-3">
-                            <h5 class="d-block mb-1 font-medium-1">Total Time Listened Today</h5>
-                            <h1 class="text-white mb-0">{{ $listeningTime }} hours</h1>
+                            <h5 class="d-block mb-1 font-medium-1">Total Time Listened</h5>
+                            <h1 class="text-white mb-0">{{ $totalListeningTime }} hours</h1>
                         </div>
                         <div class="align-self-top">
                             <i class="float-right icon">
@@ -91,13 +93,13 @@
     <div class="col-xl-6 col-lg-12">
         <div class="card tracks-card">
             <div class="card-header">
-                <h4 class="card-title">Recently Played Tracks</h4>
+                <h4 class="card-title">All Played Tracks</h4>
             </div>
             <div class="card-content">
                 <div class="card-body">
                     <div class="media-list">
-                        @if (!empty($playedTracks))
-                            @foreach ($playedTracks as $playedTrack)
+                        @if (!empty($totalPlayedTracks))
+                            @foreach ($totalPlayedTracks as $playedTrack)
                                 <div class="media">
                                     <a href="{{ route('track', ['id' => $playedTrack->track_id]) }}" class="media-left">
                                         <img src="{{ $playedTrack->track->album->image }}" height="64" />
@@ -122,12 +124,7 @@
         </div>
         <br />
     </div>
-
-    <div class="col-xl-6 col-lg-12 text-center">
-        <h2>Listening History</h2>
-        <p>Pssst, want to see all the tracks you've listened to since the start? Please click the button below!</p>
-        <p><a class="btn btn-primary" href="{{ route('music.library') }}">Visit Library</a></p>
-    </div>
 </div>
 <br />
+@endsection
 @endsection

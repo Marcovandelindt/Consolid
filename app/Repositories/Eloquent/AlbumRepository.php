@@ -23,4 +23,12 @@ class AlbumRepository implements AlbumRepositoryInterface
 
         return $albums;
     }
+
+    /**
+     * Get all played albums
+     */
+    public function all()
+    {
+        return Album::all();
+    }
 }

@@ -11,4 +11,6 @@ use App\Models\PlayedTrack;
 interface ArtistRepositoryInterface 
 {
     public function today();
+
+    public function all();
 }

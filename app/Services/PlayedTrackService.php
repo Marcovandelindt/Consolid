@@ -56,4 +56,35 @@ class PlayedTrackService
 
         return $hours . ($minutes != 0 ? ':' . $minutes : '');
     }
+
+    /**
+     * Calculate the total listening time
+     * 
+     * @param array $playedTracks
+     * 
+     * @return string
+     */
+    public function calculateTotalListeningTime($playedTracks)
+    {
+        $time = 0;
+        foreach ($playedTracks as $playedTrack) {
+            $time = $time + $playedTrack->track->duration_ms;
+        }
+
+        $seconds = ($time / 1000);
+        $hours   = 0;
+        $minutes = 0;
+
+        if ($seconds >= 3600) {
+            $hours   = floor($seconds / 3600);
+            $seconds = $seconds % 3600;
+        }
+
+        if ($seconds >= 60) {
+            $minutes = floor($seconds / 60);
+        }
+
+        return $hours . ($minutes != 0 ? ':' . $minutes : '');
+
+    }
 }

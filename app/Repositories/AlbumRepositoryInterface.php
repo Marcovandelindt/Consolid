@@ -11,4 +11,6 @@ use App\Models\PlayedTrack;
 interface AlbumRepositoryInterface 
 {
     public function today();
+
+    public function all();
 }
