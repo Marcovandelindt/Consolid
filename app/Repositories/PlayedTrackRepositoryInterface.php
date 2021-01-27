@@ -15,4 +15,6 @@ interface PlayedTrackRepositoryInterface
     public function all($results = null);
 
     public function calculateListeningTime($timeFrame);
+
+    public function getTopTracks($limit);
 }

@@ -39,19 +39,14 @@ class MusicLibraryController extends Controller
      */
     public function index(): View
     {
-        $paginatedPlayedTracks  = $this->playedTrackRepository->all(25);
-        $totalPlayedTracks      = $this->playedTrackRepository->all();
-        $totalPlayedAlbums      = $this->albumRepository->all();
-        $totalPlayedArtists     = $this->artistRepository->all();
-        $totalListeningTime     = $this->playedTrackRepository->calculateListeningTime('total'); 
-
         $data = [
             'title'                 => 'Library',
-            'totalPlayedTracks'     => $totalPlayedTracks,
-            'totalPlayedAlbums'     => $totalPlayedAlbums,
-            'totalPlayedArtists'    => $totalPlayedArtists,
-            'totalListeningTime'    => $totalListeningTime,
-            'paginatedPlayedTracks' => $paginatedPlayedTracks,
+            'totalPlayedTracks'     => $this->playedTrackRepository->all(),
+            'totalPlayedAlbums'     => $this->albumRepository->all(),
+            'totalPlayedArtists'    => $this->artistRepository->all(),
+            'totalListeningTime'    => $this->playedTrackRepository->calculateListeningTime('total'),
+            'paginatedPlayedTracks' => $this->playedTrackRepository->all(25),
+            'topTracks'             => $this->playedTrackRepository->getTopTracks(5),
         ]; 
 
         return view('music.library')->with($data);

@@ -125,6 +125,40 @@
             {{ $paginatedPlayedTracks->links() }}
         </div>
     </div>
+
+    <div class="col-xl-6 col-lg-12">
+        <div class="card tracks-card">
+            <div class="card-header">
+                <h4 class="card-title">Top Tracks of all time</h4>
+            </div>
+            <div class="card-content">
+                <div class="card-body">
+                    <div class="media-list">
+                        @if (!empty($topTracks))
+                        <ul class="list-unstyled">
+                            @foreach ($topTracks as $topTrack)
+                            <li class="media">
+                                 <a href="{{ route('track', ['id' => $topTrack->track_id]) }}" class="media-left">
+                                    <img src="{{ $topTrack->track->album->image }}" height="64" />
+                                </a>
+                                <div class="media-body">
+                                    <h4 class="media-heading">
+                                        @foreach ($topTrack->track->artists as $artist)
+                                            <a href="{{ route('artist', ['id' => $artist->id]) }}">{{ $artist->name }}</a> {{ !$loop->last ? ',' : '' }}
+                                        @endforeach
+                                    </h4>
+                                    <span class="track-name">{{ $topTrack->track->name }}</span>
+                                    <span class="float-right played-time">{{ $topTrack->total }} Plays</span>
+                                </div>
+                            </li>
+                            @endforeach
+                        </ul>
+                        @endif
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>  
 </div>
 <br />
 @endsection

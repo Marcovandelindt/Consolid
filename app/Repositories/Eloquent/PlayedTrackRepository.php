@@ -3,6 +3,7 @@
 namespace App\Repositories\Eloquent;
 
 use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\DB;
 
 use App\Repositories\PlayedTrackRepositoryInterface;
 use App\Services\PlayedTrackService;
@@ -70,5 +71,19 @@ class PlayedTrackRepository implements PlayedTrackRepositoryInterface
         }
 
         return $tracks;
+    }
+    
+    /**
+     * Get top tracks based
+     * 
+     * @param $limit
+     */
+    public function getTopTracks($limit)
+    {
+        return PlayedTrack::select('*', DB::raw('count(*) as total'))
+            ->groupBy('track_id')
+            ->orderByRaw('COUNT(*) DESC')
+            ->limit($limit)
+            ->get();
     }
 }
