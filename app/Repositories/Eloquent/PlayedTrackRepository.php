@@ -34,33 +34,41 @@ class PlayedTrackRepository implements PlayedTrackRepositoryInterface
     }
 
     /**
-     * Get the total listening time today
+     * Calculate the listening time
      * 
-     * @return int
+     * @param string $timeFrame
      */
-    public function listeningTimeToday() 
+    public function calculateListeningTime($timeFrame)
     {
-        $playedTracks = PlayedTrack::where('played_date', date('Y-m-d'))
-            ->get();
-        
-       return $this->playedTrackService->calculateListeningTime($playedTracks);
+        $playedTracks = [];
+
+        switch ($timeFrame) {
+            case 'daily':
+                $playedTracks = $this->today();
+                break;
+            case 'total':
+                $playedTracks = $this->all();
+                break;
+            default:
+                $playedTracks = $this->today();
+                break;
+        }
+
+        return $this->playedTrackService->calculateListeningTime($playedTracks);
     }
 
     /**
      * Get all played tracks
+     * @param $results
      */
-    public function all()
+    public function all($results = null)
     {
-        return PlayedTrack::all();
-    }
+        if (is_numeric($results)) {
+            $tracks = PlayedTrack::orderBy('played_at', 'DESC')->paginate($results);
+        } else {
+            $tracks = PlayedTrack::all();
+        }
 
-     /**
-     * Get all played tracks
-     */
-    public function listeningTimeTotal()
-    {
-        $all = PlayedTrack::all();
-
-        return $this->playedTrackService->calculateTotalListeningTime($all);
+        return $tracks;
     }
 }

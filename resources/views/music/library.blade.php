@@ -1,9 +1,6 @@
 @extends('layouts.app')
 
 @section('content')
-@extends('layouts.app')
-
-@section('content')
 
 <h1>{{ $title }}</h1>
 <hr />
@@ -98,8 +95,8 @@
             <div class="card-content">
                 <div class="card-body">
                     <div class="media-list">
-                        @if (!empty($totalPlayedTracks))
-                            @foreach ($totalPlayedTracks as $playedTrack)
+                        @if (!empty($paginatedPlayedTracks))
+                            @foreach ($paginatedPlayedTracks as $playedTrack)
                                 <div class="media">
                                     <a href="{{ route('track', ['id' => $playedTrack->track_id]) }}" class="media-left">
                                         <img src="{{ $playedTrack->track->album->image }}" height="64" />
@@ -111,7 +108,7 @@
                                             @endforeach
                                         </h4>
                                         <span class="track-name">{{ $playedTrack->track->name }}</span>
-                                        <span class="float-right played-time">{{ date('H:i', ($playedTrack->played_at + 60 * 60)) }}</span>
+                                        <span class="float-right played-time">{{ date('Y-m-d H:i', ($playedTrack->played_at + 60 * 60)) }}</span>
                                     </div>
                                 </div>
                             @endforeach
@@ -123,8 +120,11 @@
             </div>
         </div>
         <br />
+
+        <div class="tracks-pagination">
+            {{ $paginatedPlayedTracks->links() }}
+        </div>
     </div>
 </div>
 <br />
-@endsection
 @endsection

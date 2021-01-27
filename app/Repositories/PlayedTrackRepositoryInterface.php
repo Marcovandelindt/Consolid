@@ -12,9 +12,7 @@ interface PlayedTrackRepositoryInterface
 {
     public function today();
 
-    public function listeningTimeToday();
+    public function all($results = null);
 
-    public function all();
-
-    public function listeningTimeTotal();
+    public function calculateListeningTime($timeFrame);
 }

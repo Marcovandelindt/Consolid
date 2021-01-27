@@ -39,7 +39,7 @@ class MusicController extends Controller
             'playedTracks'  => $this->playedTrackRepository->today(),
             'playedAlbums'  => $this->albumRepository->today(),
             'playedArtists' => $this->artistRepository->today(),
-            'listeningTime' => $this->playedTrackRepository->listeningTimeToday(),
+            'listeningTime' => $this->playedTrackRepository->calculateListeningTime('daily'),
             'totalPlayedTracks' => count($this->playedTrackRepository->all()),
         ]);
     }
