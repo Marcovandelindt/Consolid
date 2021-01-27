@@ -105,7 +105,7 @@
                                     <div class="media-body">
                                         <h4 class="media-heading">
                                             @foreach ($playedTrack->track->artists as $artist)
-                                                <a href="#">{{ $artist->name }}</a> {{ !$loop->last ? ',' : '' }}
+                                                <a href="{{ route('artist', ['id' => $artist->id]) }}">{{ $artist->name }}</a> {{ !$loop->last ? ',' : '' }}
                                             @endforeach
                                         </h4>
                                         <span class="track-name">{{ $playedTrack->track->name }}</span>

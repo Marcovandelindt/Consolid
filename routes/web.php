@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ArtistController;
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\HomeController;
@@ -41,5 +42,10 @@ Route::get('/music/get-recent-tracks', [MusicGetRecentTracksController::class, '
  * Track routes
  */
 Route::get('/tracks/{id}', [TrackController::class, 'index'])->name('track');
+
+/**
+ * Artist Routes
+ */
+Route::get('/artists/{id}', [ArtistController::class, 'index'])->name('artist');
 
 require __DIR__.'/auth.php';

@@ -41,4 +41,20 @@ class Artist extends Model
             ->where('track_id', $trackId)
             ->exists();
     }
+
+    /**
+     * Check how often a artist has been played
+     */
+    public function getPlayCount()
+    {
+        $played = [];
+
+        foreach ($this->tracks as $track) {
+            foreach ($track->played as $play) {
+                $played[] = $play;
+            }
+        }
+      
+        return count($played);
+    }
 }

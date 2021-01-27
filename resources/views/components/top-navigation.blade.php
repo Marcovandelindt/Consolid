@@ -19,7 +19,7 @@
                             onclick="event.preventDefault();
                                         this.closest('form').submit();">
                         {{ __('Logout') }}
-                    <a>
+                    </a>
                 </form>
             <li>
             @endauth
