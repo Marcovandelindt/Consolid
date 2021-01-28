@@ -102,6 +102,14 @@ class MusicGetRecentTracksController extends Controller
                 $track->album_id = $album->id;
                 $track->save();
             }
+
+            # Save relation between artist(s) and album
+            foreach ($trackData->track->album->artists as $albumArtist) {
+                $existingArtist = Artist::where('spotify_id', $albumArtist->id)->first();
+                if (!empty($existingArtist) && !$existingArtist->hasAlbum($album->id)) {
+                    $existingArtist->albums()->attach($album->id);
+                }
+            }
         }
 
         return redirect()->route('music');

@@ -94,7 +94,39 @@
                 </div>
             </div>
         </div>
-    </div>  
+
+        <div class="card tracks-card">
+            <div class="card-header">
+                <h4 class="card-title">Top Albums of all time</h4>
+            </div>
+            <div class="card-content">
+                <div class="card-body">
+                    <div class="media-list">
+                        @if (!empty($topAlbums))
+                        <ul class="list-unstyled">
+                            @foreach ($topAlbums as $topAlbum)
+                            <li class="media">
+                                 <a href="#" class="media-left">
+                                    <img src="{{ $topAlbum->image }}" height="64" />
+                                </a>
+                                <div class="media-body">
+                                    <h4 class="media-heading">
+                                        @foreach ($topAlbum->artists as $artist)
+                                            <a href="{{ route('artist', ['id' => $artist->id]) }}">{{ $artist->name }}</a> {{ !$loop->last ? ',' : '' }}
+                                        @endforeach
+                                    </h4>
+                                    <span class="track-name">{{ $topAlbum->name }}</span>
+                                    <span class="float-right played-time">{{ $topAlbum->album_count }} Plays</span>
+                                </div>
+                            </li>
+                            @endforeach
+                        </ul>
+                        @endif
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 <br />
 @endsection

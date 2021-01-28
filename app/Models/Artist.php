@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 use App\Models\Track;
+use App\Models\Album;
 
 class Artist extends Model
 {
@@ -28,6 +29,11 @@ class Artist extends Model
         return $this->belongsToMany(Track::class);
     }
 
+    public function albums()
+    {
+        return $this->belongsToMany(Album::class);
+    }
+
     /**
      * Check if an artist has a track
      * 
@@ -41,6 +47,21 @@ class Artist extends Model
             ->where('track_id', $trackId)
             ->exists();
     }
+
+     /**
+     * Check if an artist has an album
+     * 
+     * @param int $albumId
+     * 
+     * @return bool true|false
+     */
+    public function hasAlbum($albumId): bool 
+    {
+        return $this->albums()
+            ->where('album_id', $albumId)
+            ->exists();
+    }
+
 
     /**
      * Check how often a artist has been played

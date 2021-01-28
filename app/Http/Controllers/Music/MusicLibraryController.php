@@ -47,6 +47,7 @@ class MusicLibraryController extends Controller
             'listeningTime'         => $this->playedTrackRepository->calculateListeningTime('total'),
             'paginatedPlayedTracks' => $this->playedTrackRepository->all(25),
             'topTracks'             => $this->playedTrackRepository->getTopTracks(5),
+            'topAlbums'             => $this->albumRepository->getTopAlbums(5),
         ]; 
 
         return view('music.library')->with($data);

@@ -13,4 +13,6 @@ interface AlbumRepositoryInterface
     public function today();
 
     public function all();
+
+    public function getTopAlbums($limit);
 }
