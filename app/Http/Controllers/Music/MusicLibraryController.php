@@ -48,6 +48,7 @@ class MusicLibraryController extends Controller
             'paginatedPlayedTracks' => $this->playedTrackRepository->all(25),
             'topTracks'             => $this->playedTrackRepository->getTopTracks(5),
             'topAlbums'             => $this->albumRepository->getTopAlbums(5),
+            'topArtists'            => $this->artistRepository->getTopArtists(5),
         ]; 
 
         return view('music.library')->with($data);

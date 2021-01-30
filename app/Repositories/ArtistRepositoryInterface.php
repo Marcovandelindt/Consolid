@@ -13,4 +13,6 @@ interface ArtistRepositoryInterface
     public function today();
 
     public function all();
+
+    public function getTopArtists($limit);
 }

@@ -62,6 +62,7 @@
         </div>
     </div>
 
+    <!-- Top Tracks Card -->
     <div class="col-xl-6 col-lg-12">
         <div class="card tracks-card">
             <div class="card-header">
@@ -94,7 +95,44 @@
                 </div>
             </div>
         </div>
+        <!-- /Top Tracks Card -->
 
+        <br />
+
+        <!-- Top Artists Card -->
+        <div class="card tracks-card">
+            <div class="card-header">
+                <h4 class="card-title">Top Artists of all time</h4>
+            </div>
+            <div class="card-content">
+                <div class="card-body">
+                    <div class="media-list">
+                        @if (!empty($topArtists))
+                        <ul class="list-unstyled">
+                            @foreach ($topArtists as $topArtist) 
+                            <li class="media">
+                                <a href="{{ route('artist', ['id' => $topArtist->id]) }}" class="media-left">
+                                    <img src="{{ $topArtist->image }}" height="64" width="64"/>
+                                </a>
+                                <div class="media-body">
+                                    <h4 class="media-heading">
+                                        <a href="{{ route('artist', ['id' => $topArtist->id]) }}">{{ $topArtist->name }}</a>
+                                    </h4>
+                                    <span class="float-right played-time">{{ $topArtist->artist_count }} Plays</span>
+                                </div>
+                            </li>
+                            @endforeach
+                        </ul>
+                        @endif
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- /Top Artists Card -->
+
+        <br />
+
+        <!-- Top Albums Card -->
         <div class="card tracks-card">
             <div class="card-header">
                 <h4 class="card-title">Top Albums of all time</h4>
@@ -126,6 +164,7 @@
                 </div>
             </div>
         </div>
+        <!--/Top Albums Card -->
     </div>
 </div>
 <br />
