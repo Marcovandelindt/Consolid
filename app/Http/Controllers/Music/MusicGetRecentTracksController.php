@@ -66,48 +66,49 @@ class MusicGetRecentTracksController extends Controller
             $timestamp = strtotime($trackData->played_at);
             if (!PlayedTrack::where('track_id', $track->id)->where('played_at', $timestamp)->first()) {
                 $this->playedTrackService->savePlayedTrack($trackData, $track);
-            }
+            
 
-            # Save the artists
-            foreach ($trackData->track->artists as $artistData) {
-                if (!Artist::where('spotify_id', $artistData->id)->first()) {
-                    $artist = $this->artistService->createArtist($artistData, $api);
-                } else {
-                    $artist = Artist::where('spotify_id', $artistData->id)->first();
-                }
+                # Save the artists
+                foreach ($trackData->track->artists as $artistData) {
+                    if (!Artist::where('spotify_id', $artistData->id)->first()) {
+                        $artist = $this->artistService->createArtist($artistData, $api);
+                    } else {
+                        $artist = Artist::where('spotify_id', $artistData->id)->first();
+                    }
 
-                $this->artistService->updatePlayCount($artist);
+                    $this->artistService->updatePlayCount($artist);
 
-                if (!$artist->hasTrack($track->id)) {
-                    $artist->tracks()->attach($track->id);
-                }
+                    if (!$artist->hasTrack($track->id)) {
+                        $artist->tracks()->attach($track->id);
+                    }
 
-                # Save the genre
-                foreach ($api->getArtist($artist->spotify_id)->genres as $genre) {
-                    $systemName = $this->genreService->createSystemName($genre);
-                    if (!Genre::where('system_name', $systemName)->first()) {
-                        $this->genreService->createGenre($genre);
+                    # Save the genre
+                    foreach ($api->getArtist($artist->spotify_id)->genres as $genre) {
+                        $systemName = $this->genreService->createSystemName($genre);
+                        if (!Genre::where('system_name', $systemName)->first()) {
+                            $this->genreService->createGenre($genre);
+                        }
                     }
                 }
-            }
 
-            # Save the album
-            if (!Album::where('spotify_id', $trackData->track->album->id)->first()) {
-                $album = $this->albumService->createNewAlbum($trackData->track->album, $api);
-            } else {
-                $album = Album::where('spotify_id', $trackData->track->album->id)->first();
-            }
+                # Save the album
+                if (!Album::where('spotify_id', $trackData->track->album->id)->first()) {
+                    $album = $this->albumService->createNewAlbum($trackData->track->album, $api);
+                } else {
+                    $album = Album::where('spotify_id', $trackData->track->album->id)->first();
+                }
 
-            if (!$track->album_id) {
-                $track->album_id = $album->id;
-                $track->save();
-            }
+                if (!$track->album_id) {
+                    $track->album_id = $album->id;
+                    $track->save();
+                }
 
-            # Save relation between artist(s) and album
-            foreach ($trackData->track->album->artists as $albumArtist) {
-                $existingArtist = Artist::where('spotify_id', $albumArtist->id)->first();
-                if (!empty($existingArtist) && !$existingArtist->hasAlbum($album->id)) {
-                    $existingArtist->albums()->attach($album->id);
+                # Save relation between artist(s) and album
+                foreach ($trackData->track->album->artists as $albumArtist) {
+                    $existingArtist = Artist::where('spotify_id', $albumArtist->id)->first();
+                    if (!empty($existingArtist) && !$existingArtist->hasAlbum($album->id)) {
+                        $existingArtist->albums()->attach($album->id);
+                    }
                 }
             }
         }
