@@ -119,7 +119,7 @@ class MusicService
             ->join('played_tracks', 'artist_track.track_id', '=', 'played_tracks.track_id')
             ->groupBy('artists.id')
             ->orderByRaw('COUNT(*) DESC')
-            ->orderByRaw('artists.name DESC')
+            ->orderByRaw('artists.name')
             ->whereBetween('played_tracks.played_date', [$startDate, $endDate])
             ->limit(10)
             ->get();

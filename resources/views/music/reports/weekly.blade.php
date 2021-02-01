@@ -1,72 +1,113 @@
 @extends('layouts.app')
 
 @section('content')
-<h1>{{ $title }} | {{ $startDateFormatted }} - {{ $endDateFormatted }}</h1>
+<h2 class="text-center">{{ $title }} | {{ $startDateFormatted }} - {{ $endDateFormatted }}</h2>
 <hr />
 
-<div class="row">
-    <div class="col-md-4">
-        <div class="card top-item-card">
-            @foreach ($weeklyReportData['topTracks'] as $topTrack)
-                @if ($loop->first)
-                    <img class="card-img-top" src="{{ $topTrack->album->image }}" alt="{{ $topTrack->name }}">
-                    <div class="card-body top-text">
-                        <h5 class="card-title text-center"><strong><a href="{{ route('track', ['id' => $topTrack->id]) }}" class="default-link">{{ $topTrack->name }}</a></strong></h5>
-                        <p class="text-center">
-                            <i>
-                                @foreach ($topTrack->artists as $artist)
-                                    <a href="{{ route('artist', ['id' => $artist->id]) }}" class="default-link text-underline">{{ $artist->name }}</a> {{ !$loop->last ? ',' : '' }}
-                                @endforeach
-                            </i>
-                        </p>
-                        <p class="text-center">{{ $topTrack->name }} was your most played track this week with a total of <strong class="text-underline">{{ $topTrack->total }}</strong> plays!</p>
-                    </div>
-                @else
-                    <li class="list-group-item">
-                        <a href="{{ route('track', ['id' => $topTrack->id]) }}" class="default-link text-underline">{{ $topTrack->name }}</a> <i class="float-right">{{ $topTrack->total }} plays</i>
-                    </li>
-                @endif
-            @endforeach
-        </div>
-    </div>
-
-    <div class="col-md-4">
-        <div class="card top-item-card">
-            @foreach ($weeklyReportData['topArtists'] as $topArtist)
-                @if ($loop->first)
-                    <img class="card-img-top" src="{{ $topArtist->image }}" alt="{{ $topArtist->name }}">
-                    <div class="card-body top-text">
-                        <h5 class="card-title text-center"><strong><a href="{{ route('artist', ['id' => $topArtist->id]) }}" class="default-link">{{ $topArtist->name }}</a></strong></h5>
-                        <div class="vertically-center">
-                            <p class="text-center">{{ $topArtist->name }} was your most played artist this week with a total of <strong class="text-underline">{{ $topArtist->total }}</strong> plays!</p>
+<div class="report-section">
+    <div class="row">
+        <div class="col-md-4">
+            <div class="card top-item-card">
+                @foreach ($weeklyReportData['topTracks'] as $topTrack)
+                    @if ($loop->first)
+                        <img class="card-img-top" src="{{ $topTrack->album->image }}" alt="{{ $topTrack->name }}">
+                        <div class="card-body top-text">
+                            <h5 class="card-title text-center"><strong><a href="{{ route('track', ['id' => $topTrack->id]) }}" class="default-link">{{ $topTrack->name }}</a></strong></h5>
+                            <p class="text-center">
+                                <i>
+                                    @foreach ($topTrack->artists as $artist)
+                                        <a href="{{ route('artist', ['id' => $artist->id]) }}" class="default-link text-underline">{{ $artist->name }}</a> {{ !$loop->last ? ',' : '' }}
+                                    @endforeach
+                                </i>
+                            </p>
+                            <p class="text-center">{{ $topTrack->name }} was your most played track this week with a total of <strong class="text-underline">{{ $topTrack->total }}</strong> plays!</p>
                         </div>
-                    </div>
-                @else
-                    <li class="list-group-item">
-                        <a href="{{ route('artist', ['id' => $topArtist->id]) }}" class="default-link text-underline">{{ $topArtist->name }}</a> <i class="float-right">{{ $topArtist->total }} plays</i>
-                    </li>
-                @endif
-            @endforeach
+                    @else
+                        <li class="list-group-item">
+                            <a href="{{ route('track', ['id' => $topTrack->id]) }}" class="default-link text-underline">{{ $topTrack->name }}</a> <i class="float-right">{{ $topTrack->total }} plays</i>
+                        </li>
+                    @endif
+                @endforeach
+            </div>
         </div>
-    </div>
 
-     <div class="col-md-4">
-        <div class="card top-item-card">
-            @foreach ($weeklyReportData['topAlbums'] as $topAlbum)
-                @if ($loop->first)
-                    <img class="card-img-top" src="{{ $topAlbum->image }}" alt="{{ $topAlbum->name }}">
-                    <div class="card-body top-text">
-                        <h5 class="card-title text-center"><strong><a href="#" class="default-link">{{ $topAlbum->name }}</a></strong></h5>
-                        <p class="text-center">{{ $topAlbum->name }} was your most played album this week with a total of <strong class="text-underline">{{ $topAlbum->total }}</strong> plays!</p>
-                    </div>
-                @else
-                    <li class="list-group-item">
-                        <a href="#" class="default-link text-underline">{{ $topAlbum->name }}</a> <i class="float-right">{{ $topAlbum->total }} plays</i>
-                    </li>
-                @endif
-            @endforeach
+        <div class="col-md-4">
+            <div class="card top-item-card">
+                @foreach ($weeklyReportData['topArtists'] as $topArtist)
+                    @if ($loop->first)
+                        <img class="card-img-top" src="{{ $topArtist->image }}" alt="{{ $topArtist->name }}">
+                        <div class="card-body top-text">
+                            <h5 class="card-title text-center"><strong><a href="{{ route('artist', ['id' => $topArtist->id]) }}" class="default-link">{{ $topArtist->name }}</a></strong></h5>
+                            <div class="vertically-center">
+                                <p class="text-center">{{ $topArtist->name }} was your most played artist this week with a total of <strong class="text-underline">{{ $topArtist->total }}</strong> plays!</p>
+                            </div>
+                        </div>
+                    @else
+                        <li class="list-group-item">
+                            <a href="{{ route('artist', ['id' => $topArtist->id]) }}" class="default-link text-underline">{{ $topArtist->name }}</a> <i class="float-right">{{ $topArtist->total }} plays</i>
+                        </li>
+                    @endif
+                @endforeach
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="card top-item-card">
+                @foreach ($weeklyReportData['topAlbums'] as $topAlbum)
+                    @if ($loop->first)
+                        <img class="card-img-top" src="{{ $topAlbum->image }}" alt="{{ $topAlbum->name }}">
+                        <div class="card-body top-text">
+                            <h5 class="card-title text-center"><strong><a href="#" class="default-link">{{ $topAlbum->name }}</a></strong></h5>
+                            <p class="text-center">{{ $topAlbum->name }} was your most played album this week with a total of <strong class="text-underline">{{ $topAlbum->total }}</strong> plays!</p>
+                        </div>
+                    @else
+                        <li class="list-group-item">
+                            <a href="#" class="default-link text-underline">{{ $topAlbum->name }}</a> <i class="float-right">{{ $topAlbum->total }} plays</i>
+                        </li>
+                    @endif
+                @endforeach
+            </div>
         </div>
     </div>
+</div>
+
+<br />
+
+<div class="report-section">
+    <div class="row">
+        <div class="col-md-12">
+            <h2 class="section-heading text-center">Highlights</h2>
+            <hr />
+        </div>
+
+        <div class="col-md-4">
+            <div class="card mb-3 text-center">
+                <div class="card-header">Total Plays</div>
+                <div class="card-body">
+                    <h5 class="card-title">{{ count($totalPlayedTracks) }} Plays</h5>
+                    <i>vs. {{ count($totalPlayedTracksLastWeek) }} (last week)</i>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card mb-3 text-center">
+                <div class="card-header">Average plays per day</div>
+                <div class="card-body">
+                    <h5 class="card-title">{{ round(count($totalPlayedTracks) / 7) }}</h5>
+                    <i>vs. {{ round(count($totalPlayedTracksLastWeek) / 7) }} (last week)</i>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card mb-3 text-center">
+                <div class="card-header">Total Time Listened</div>
+                <div class="card-body">
+                    <h5 class="card-title">{{ $totalListeningTime }}</h5>
+                    <i>vs. {{ $totalListeningTimeLastWeek }} (last week)</i>
+                </div>
+            </div>
+        </div>
+    </div>  
 </div>
 
 <br />

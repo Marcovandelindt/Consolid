@@ -17,4 +17,6 @@ interface PlayedTrackRepositoryInterface
     public function calculateListeningTime($timeFrame);
 
     public function getTopTracks($limit);
+
+    public function getWeekly($startDate, $endDate);
 }

@@ -33,14 +33,18 @@ class PlayedTrackService
      * Calculate the total listning time
      * 
      * @param array $playedTracks
+     * @param bool  $formatted
      * 
      * @return $string
      */
-    public function calculateListeningTime($playedTracks)
+    public function calculateListeningTime($playedTracks, $formatted = false)
     {
         $time = 0;
-        foreach ($playedTracks as $playedTrack) {
-            $time = $time + $playedTrack->track->duration_ms;
+        
+        if (!empty($playedTracks)) {
+            foreach ($playedTracks as $playedTrack) {
+                $time = $time + $playedTrack->track->duration_ms;
+            }
         }
 
         $seconds = ($time / 1000);
@@ -54,6 +58,10 @@ class PlayedTrackService
 
         if ($seconds >= 60) {
             $minutes = floor($seconds / 60);
+        }
+
+        if ($formatted) {
+            return $hours . ' hours ' . ($minutes != 0 ? 'and ' . $minutes . ' minutes' : '');
         }
 
         return $hours . ($minutes != 0 ? ':' . $minutes : '');
