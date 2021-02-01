@@ -19,4 +19,8 @@ interface PlayedTrackRepositoryInterface
     public function getTopTracks($limit);
 
     public function getWeekly($startDate, $endDate);
+
+    public function getTrackCountPerTimeLastWeek();
+
+    public function getByDatesAndTimes($startDate, $endDate, $startingTime, $endingTime);
 }

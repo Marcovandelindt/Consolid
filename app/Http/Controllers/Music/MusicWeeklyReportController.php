@@ -48,6 +48,7 @@ class MusicWeeklyReportController extends Controller
             'totalListeningTime' => $this->playedTrackRepository->calculateListeningTime('last-week', true),
             'totalPlayedTracksLastWeek' => $this->playedTrackRepository->getWeekly(Carbon::parse($startDate)->subDays(7), Carbon::parse($endDate)->subDays(7)),
             'totalListeningTimeLastWeek' => $this->playedTrackRepository->calculateListeningTime('-2 week', true),
+            'trackCountPerTimeLastWeek' => $this->playedTrackRepository->getTrackCountPerTimeLastWeek(),
         ];
 
         return view('music.reports.weekly')->with($data);

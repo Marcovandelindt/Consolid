@@ -110,6 +110,45 @@
     </div>  
 </div>
 
+<div class="report-section">
+    <div class="row">
+        <div class="col-md-12">
+            <h2 class="section-heading text-center">Which hours were the most active?</h2>
+            <hr />
+        </div>
+
+        <div class="col-md-12">
+            <canvas id="timeChart" height="600" style="height: 600px;"></canvas>
+        </div>
+    </div>
+</div>
+
 <br />
+
+<script type="text/javascript">
+    var ctx = document.getElementById('timeChart');
+    ctx.height = 600;
+
+    var timeChart = new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: ['00:00', '01:00', '02:00', '03:00', '04:00', '05:00', '06:00', '07:00', '08:00', '09:00', '10:00', '11:00', '12:00', '13:00', '14:00', '15:00', '16:00', '17:00', '18:00', '19:00', '20:00', '21:00', '22:00', '23:00'],
+            datasets: [{
+                label: 'Total Played Tracks',
+                data: [
+                    @foreach ($trackCountPerTimeLastWeek as $time => $trackCount)
+                        {{ count($trackCount) . ', ' }}
+                    @endforeach
+                ],
+                backgroundColor: [
+                    'rgba(249, 122, 95, 0.5)'
+                ]
+            }]
+        }, 
+        options: {
+            maintainAspectRatio: false,
+        }
+    });
+</script>
 
 @endsection

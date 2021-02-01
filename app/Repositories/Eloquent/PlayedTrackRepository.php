@@ -5,6 +5,7 @@ namespace App\Repositories\Eloquent;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Carbon;
+use Carbon\CarbonPeriod;
 
 use App\Repositories\PlayedTrackRepositoryInterface;
 use App\Services\PlayedTrackService;
@@ -109,6 +110,46 @@ class PlayedTrackRepository implements PlayedTrackRepositoryInterface
         return PlayedTrack::select('*')
             ->where('played_date', '>=', $startDate)
             ->where('played_date', '<=', $endDate)
+            ->get();
+    }
+
+    public function getTrackCountPerTimeLastWeek()
+    {
+        // Set start and end date
+        $startDate = Carbon::now()->startOfWeek()->subDays(7)->format('Y-m-d');
+        $endDate   = Carbon::now()->endOfWeek()->subDays(7)->format('Y-m-d');
+
+        // Set the starting hour of the day
+        $startingTime = strtotime('00:00');
+
+        // Create empty array to store tracks associated with time
+        $trackTimes = [];
+
+        // Loop through all the possible hours in a day
+        for ($i = 0; $i < 24; $i++) {
+            $endingTime = strtotime('+1 hour', $startingTime);
+            $tracks     = $this->getByDatesAndTimes($startDate, $endDate, date('H:i', $startingTime), date('H:i', $endingTime));
+            if (count($tracks) > 0) {
+                foreach ($tracks as $track) {
+                    $trackTimes[date('H:i', $startingTime)][] = $track;
+                }
+            } else {
+                $trackTimes[date('H:i', $startingTime)] = [];
+            }
+
+            $startingTime = strtotime('+1 hour', $startingTime);
+        }
+
+        return $trackTimes;
+    }
+
+    public function getByDatesAndTimes($startDate, $endDate, $startingTime, $endingTime)
+    {
+        return PlayedTrack::select('*')
+            ->where('played_date', '>=', $startDate)
+            ->where('played_date', '<=', $endDate)
+            ->where('time', '>=', $startingTime)
+            ->where('time', '<=', $endingTime)
             ->get();
     }
 }
