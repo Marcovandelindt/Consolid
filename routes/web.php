@@ -9,6 +9,7 @@ use App\Http\Controllers\Music\MusicController;
 use App\Http\Controllers\Music\MusicGetRecentTracksController;
 use App\Http\Controllers\Music\MusicLibraryController;
 use App\Http\Controllers\Music\MusicRequestAccessTokenController;
+use App\Http\Controllers\Music\MusicWeeklyReportController;
 use App\Http\Controllers\TrackController;
 use App\Http\Controllers\WeatherController;
 
@@ -39,6 +40,8 @@ Route::get('/music/authenticate', [MusicAuthenticateController::class, 'index'])
 Route::get('/music/request-access-token', [MusicRequestAccessTokenController::class, 'store'])->name('music.request');
 Route::get('/music/get-recent-tracks', [MusicGetRecentTracksController::class, 'create'])->name('music.recent');
 Route::get('/music/library', [MusicLibraryController::class, 'index'])->name('music.library');
+
+Route::get('/music/reports/weekly', [MusicWeeklyReportController::class, 'index'])->name('reports.weekly');
 
 /**
  * Track routes
