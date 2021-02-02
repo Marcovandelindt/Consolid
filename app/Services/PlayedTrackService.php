@@ -25,7 +25,7 @@ class PlayedTrackService
         $playedTrack->played_from = (!empty($data->context->type) ? $data->context->type : '');
         $playedTrack->played_at   = strtotime($data->played_at);
         $playedTrack->played_date = date('Y-m-d', strtotime($data->played_at));
-        $playedTrack->time        = date('H:i', strtotime('+1 hour', $data->played_at));
+        $playedTrack->time        = date('H:i', strtotime('+1 hour', strtotime($data->played_at)));
 
         $playedTrack->save();
     }
