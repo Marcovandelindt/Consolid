@@ -59,7 +59,7 @@ class JournalController extends Controller
     /**
      * Store a new Journal Entry
      *
-     * @param \App\Http\Requests\StoreJournalRequest
+     * @param \App\Http\Requests\StoreJournalRequest $request
      *
      * @return \Illuminate\Http\RedirectResponse
      */
@@ -75,5 +75,44 @@ class JournalController extends Controller
     	return redirect()
     		->route('journals')
     		->with('status', 'Journal successfully saved');
+    }
+
+    /**
+     * Edit a Journal
+     *
+     * @param int $id
+     *
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function edit($id): View 
+    {
+        $journal = Journal::findOrFail($id);
+
+        $data = [
+            'title'   => $journal->name,
+            'journal' => $journal,
+        ];
+
+        return view('journals.edit')->with($data);
+    }
+
+    /**
+     * Update an existing journal
+     *
+     * @param int                                    $id
+     * @param \App\Http\Requests\StoreJournalRequest $request
+     *
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function update($id, StoreJournalRequest $request)
+    {
+        $journal = Journal::findOrFail($id);
+
+        $journal->name        = $request->name;
+        $journal->description = $request->description;
+
+        $journal->save();
+
+        return redirect()->route('journals')->with('status', 'Journal successfully edited');
     }
 }

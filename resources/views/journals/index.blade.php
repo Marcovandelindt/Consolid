@@ -20,9 +20,9 @@
 			<div class="card journal-card">
 				<div class="card-body">
 					<div class="card-title">{{ $journal->name }}</div>
-					<p class="card-text text-muted">{{ $journal->description }}</p>
+					<p class="card-text text-muted">{{ (mb_strlen($journal->description) > 250) ? mb_substr($journal->description, 0, 250) . '...' : $journal->description }}</p>
 					<a class="card-link btn btn-primary" href="#">Open Journal</a>
-					<a class="card-link btn btn-warning" href="#">Edit Journal</a>
+					<a class="card-link btn btn-warning" href="{{ route('journals.edit', ['id' => $journal->id]) }}">Edit Journal</a>
 				</div>
 			</div>
 		</div>

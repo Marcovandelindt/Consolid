@@ -60,5 +60,7 @@ Route::get('/artists/{id}', [ArtistController::class, 'index'])->name('artist');
 Route::get('/journals', [JournalController::class, 'index'])->name('journals');
 Route::get('/journals/create', [JournalController::class, 'create'])->name('journals.create');
 Route::post('/journals/create', [JournalController::class, 'store']);
+Route::get('/journals/edit/{id}', [JournalController::class, 'edit'])->name('journals.edit');
+Route::post('/journals/edit/{id}', [JournalController::class, 'update']);
 
 require __DIR__.'/auth.php';
