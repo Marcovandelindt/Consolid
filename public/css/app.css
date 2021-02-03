@@ -10167,3 +10167,8 @@ h3 {
 .report-section {
   margin-top: 50px;
 }
+
+.journal-card .card-title {
+  font-weight: bold;
+  font-size: 20px;
+}

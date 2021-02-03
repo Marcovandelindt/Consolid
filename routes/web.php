@@ -12,6 +12,7 @@ use App\Http\Controllers\Music\MusicRequestAccessTokenController;
 use App\Http\Controllers\Music\MusicWeeklyReportController;
 use App\Http\Controllers\TrackController;
 use App\Http\Controllers\WeatherController;
+use App\Http\Controllers\JournalController;
 
 /*
 |--------------------------------------------------------------------------
@@ -52,5 +53,12 @@ Route::get('/tracks/{id}', [TrackController::class, 'index'])->name('track');
  * Artist Routes
  */
 Route::get('/artists/{id}', [ArtistController::class, 'index'])->name('artist');
+
+/**
+ * Journal Routes
+ */
+Route::get('/journals', [JournalController::class, 'index'])->name('journals');
+Route::get('/journals/create', [JournalController::class, 'create'])->name('journals.create');
+Route::post('/journals/create', [JournalController::class, 'store']);
 
 require __DIR__.'/auth.php';

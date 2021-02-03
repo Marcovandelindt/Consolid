@@ -7,11 +7,11 @@
             <i class="fas fa-home sidebar-icon"></i>
             <span class="item-name">Home</span>
         </a>
-        <a href="{{ route('home') }}" class="list-group-item list-group-item-action bg-light">
+        <a href="{{ route('music') }}" class="list-group-item list-group-item-action bg-light">
             <i class="fas fa-music sidebar-icon"></i>
             <span class="item-name">Music</span>
         </a>
-        <a href="{{ route('home') }}" class="list-group-item list-group-item-action bg-light">
+        <a href="{{ route('journals') }}" class="list-group-item list-group-item-action bg-light">
             <i class="fas fa-book sidebar-icon"></i>
             <span class="item-name">Journal</span>
         </a>
