@@ -13,6 +13,7 @@ use App\Http\Controllers\Music\MusicWeeklyReportController;
 use App\Http\Controllers\TrackController;
 use App\Http\Controllers\WeatherController;
 use App\Http\Controllers\JournalController;
+use App\Http\Controllers\JournalEntryController;
 
 /*
 |--------------------------------------------------------------------------
@@ -57,10 +58,17 @@ Route::get('/artists/{id}', [ArtistController::class, 'index'])->name('artist');
 /**
  * Journal Routes
  */
-Route::get('/journals', [JournalController::class, 'index'])->name('journals');
+Route::get('/journals', [JournalController::class, 'overview'])->name('journals.overview');
 Route::get('/journals/create', [JournalController::class, 'create'])->name('journals.create');
 Route::post('/journals/create', [JournalController::class, 'store']);
 Route::get('/journals/edit/{id}', [JournalController::class, 'edit'])->name('journals.edit');
 Route::post('/journals/edit/{id}', [JournalController::class, 'update']);
+Route::get('/journals/{id}', [JournalController::class, 'index'])->name('journal');
+
+/**
+ * Journal Entry routes
+ */
+Route::get('/journals/{id}/create-entry', [JournalEntryController::class, 'create'])->name('journals.entries.create');
+Route::post('/journals/{id}/create-entry', [JournalEntryController::class, 'store']);
 
 require __DIR__.'/auth.php';

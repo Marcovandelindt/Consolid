@@ -27,11 +27,33 @@ class JournalController extends Controller
     }
 
     /**
-     * Show the journals view
+     * Show the journal detail view
+     *
+     * @param int $id
+     *
+     * @return \Illuminate\View\View 
+     */
+    public function index($id): View 
+    {
+        $journal = Journal::findOrFail($id);
+
+        $entries = $journal->entries;
+
+        $data = [
+            'title'   => $journal->name,
+            'journal' => $journal,
+            'entries' => $entries,
+        ];
+
+        return view('journals.index')->with($data);
+    }
+
+    /**
+     * Show the journals overview view
      *
      * @return \Illuminate\View\View
      */
-    public function index(): View
+    public function overview(): View
     {
     	$data = [
     		'title'    => 'Journals',
@@ -39,7 +61,7 @@ class JournalController extends Controller
     		'journals' => $this->journalRepository->all(),
     	];
 
-    	return view('journals.index')->with($data);
+    	return view('journals.overview')->with($data);
     }
 
     /**
