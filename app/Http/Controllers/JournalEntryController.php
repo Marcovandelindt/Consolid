@@ -83,7 +83,54 @@ class JournalEntryController extends Controller
     	$entry->save();
 
     	return redirect()
-    		->route('journal', ['id' => $journal->id])
+    		->route('journal', [
+                'id' => $journal->id
+            ])
     		->with('status', 'Entry successfully created');
+    }
+
+    /**
+     * Show the edit view for a journal entry
+     * 
+     * @param int $journalId
+     * @param int $entryId
+     * 
+     * @return \Illuminate\View\View
+     */
+    public function edit($journalId, $entryId): View
+    {
+        $entry = JournalEntry::findOrFail($entryId);
+
+        $data = [
+            'title' => 'Edit - ' . $entry->title,
+            'entry' => $entry
+        ];
+
+        return view('journals.entries.edit')
+            ->with($data);
+    }
+
+    /**
+     * Update the journal entry
+     * 
+     * @param int $journalId
+     * @param int $entryId
+     * 
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function update($journalId, $entryId, StoreJournalEntryRequest $request): RedirectResponse 
+    {
+        $entry = JournalEntry::findOrFail($entryId);
+
+        $entry->title = $request->title;
+        $entry->body  = $request->body;
+
+        $entry->save();
+
+        return redirect()
+            ->route('journal', [
+                'id' => $journalId
+            ])
+            ->with('status', 'Entry successfully edited');
     }
 }
