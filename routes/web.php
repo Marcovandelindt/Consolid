@@ -14,6 +14,7 @@ use App\Http\Controllers\TrackController;
 use App\Http\Controllers\WeatherController;
 use App\Http\Controllers\JournalController;
 use App\Http\Controllers\JournalEntryController;
+use App\Models\JournalEntry;
 
 /*
 |--------------------------------------------------------------------------
@@ -68,9 +69,10 @@ Route::get('/journals/{id}', [JournalController::class, 'index'])->name('journal
 /**
  * Journal Entry routes
  */
+Route::get('/journals/{id}/entry/{entry_id}', [JournalEntryController::class, 'index'])->name('journals.entry');
 Route::get('/journals/{id}/create-entry', [JournalEntryController::class, 'create'])->name('journals.entries.create');
 Route::post('/journals/{id}/create-entry', [JournalEntryController::class, 'store']);
-Route::get('/journals/{id}/entry/{entry_id}', [JournalEntryController::class, 'edit'])->name('journals.entries.edit');
+Route::get('/journals/{id}/entry/{entry_id}/edit', [JournalEntryController::class, 'edit'])->name('journals.entries.edit');
 Route::post('/journals/{id}/entry/{entry_id}', [JournalEntryController::class, 'update']);
 
 require __DIR__.'/auth.php';

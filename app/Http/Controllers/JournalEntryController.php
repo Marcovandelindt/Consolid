@@ -128,8 +128,9 @@ class JournalEntryController extends Controller
         $entry->save();
 
         return redirect()
-            ->route('journal', [
-                'id' => $journalId
+            ->route('journals.entry', [
+                'id'       => $journalId,
+                'entry_id' => $entry->id,
             ])
             ->with('status', 'Entry successfully edited');
     }

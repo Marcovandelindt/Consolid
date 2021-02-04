@@ -26,7 +26,7 @@
 				<div class="card-body">
 					<div class="card-title">{{ $entry->title }}</div>
 					<p class="card-text text-muted">{!! (mb_strlen($entry->body) > 250) ? mb_substr($entry->body, 0, 250) . '...' : $entry->body !!}</p>
-					<a class="card-link btn btn-primary" href="#">Read full entry</a>
+					<a class="card-link btn btn-primary" href="{{ route('journals.entry', ['id' => $entry->journal->id, 'entry_id' => $entry->id]) }}">Read full entry</a>
 					<a class="card-link btn btn-warning" href="{{ route('journals.entries.edit', ['id' => $entry->journal->id, 'entry_id' => $entry->id]) }}">Edit Entry</a>
 				</div>
 			</div>
