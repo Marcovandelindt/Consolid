@@ -12,7 +12,7 @@
 
 <div class="row">
 	<div class="col-md-8">
-		<form method="POST" action="{{ route('journals.entries.create', ['id' => $journal->id]) }}">
+		<form method="POST" action="{{ route('journals.entries.create', ['id' => $journal->id]) }}" enctype="multipart/form-data">
 
 			@csrf
 
@@ -24,6 +24,12 @@
 			<div class="mb-3">
 				<label for="body" class="form-label">Body</label>
 				<textarea name="body" id="customEditor" class="form-control">{{ old('body') }}</textarea>
+			</div>
+
+			<div class="mb-3">
+				<label for="image" class="form-label">Choose Image</label>
+				<br />
+				<input type="file" name="image" id="image" />
 			</div>
 
 			<div class="mb-3">

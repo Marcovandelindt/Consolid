@@ -12,6 +12,10 @@
                 <div class="card-content">
                     {!! $entry->body !!}
                 </div>
+                <div class="card-image">
+                    <img src="{{ asset($entry->image) }}" height="400"/>
+                </div>
+                <br />
                 <div class="card-footer pt-3">
                     <p><i><strong>Written by {{ Auth::user()->name }} on {{ date('l d M Y, H:i', strtotime($entry->created_at)) }}</strong></i></p>
                 </div>

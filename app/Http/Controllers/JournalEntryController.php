@@ -5,14 +5,19 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\View\View;
+Use Illuminate\Support\Str;
 
 use App\Models\JournalEntry;
 use App\Models\Journal;
 
 use App\Http\Requests\StoreJournalEntryRequest;
 
+use App\Traits\ImageUploadTrait;
+
 class JournalEntryController extends Controller
 {
+    use ImageUploadTrait;
+
     /**
      * Constructor
      */
@@ -25,12 +30,13 @@ class JournalEntryController extends Controller
      * Show the detail view of a journal entry
      *
      * @param int $id
+     * @param int $entry_id
      *
      * @return \Illuminate\View\View
      */
-    public function index($id): View 
+    public function index($id, $entry_id): View 
     {
-    	$entry = JournalEntry::findOrFail($id);
+    	$entry = JournalEntry::findOrFail($entry_id);
 
     	$data = [
     		'title'   => $entry->title,
@@ -78,7 +84,19 @@ class JournalEntryController extends Controller
 
     	$entry->journal_id = $journal->id;
     	$entry->title 	   = $request->title;
-    	$entry->body  	   = $request->body;
+        $entry->body  	   = $request->body;
+        
+        # Store image
+        if ($request->has('image')) {
+            $image  = $request->file('image');
+            $name   = Str::slug($image->getClientOriginalName() . '_' . time());
+            $folder = '/uploads/images/';
+            $path   = $folder . $name . '.' . $image->getClientOriginalExtension();
+
+            $this->storeImage($image, $folder, 'public', $name);
+
+            $entry->image = $path;
+        }
 
     	$entry->save();
 
@@ -124,6 +142,18 @@ class JournalEntryController extends Controller
 
         $entry->title = $request->title;
         $entry->body  = $request->body;
+
+        # Store image
+        if ($request->has('image')) {
+            $image  = $request->file('image');
+            $name   = Str::slug($image->getClientOriginalName() . '_' . time());
+            $folder = '/uploads/images/';
+            $path   = $folder . $name . '.' . $image->getClientOriginalExtension();
+
+            $this->storeImage($image, $folder, 'public', $name);
+
+            $entry->image = $path;
+        }
 
         $entry->save();
 
