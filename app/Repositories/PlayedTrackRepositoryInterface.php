@@ -22,7 +22,11 @@ interface PlayedTrackRepositoryInterface
 
     public function getTrackCountPerTimeLastWeek();
 
+    public function getTrackCountPerTimeMonth();
+
     public function getByDatesAndTimes($startDate, $endDate, $startingTime, $endingTime);
+
+    public function getByDates($startDate, $endDate);
 
     public function calculateAveragePlays();
 }

@@ -143,6 +143,39 @@ class PlayedTrackRepository implements PlayedTrackRepositoryInterface
         return $trackTimes;
     }
 
+    public function getTrackCountPerTimeMonth()
+    {
+        $startDate = Carbon::now()->startOfYear()->format('Y-m-d');
+        $endDate   = Carbon::now()->endOfYear()->format('Y-m-d');
+
+        $trackDates = [];
+
+        for ($i = 0; $i < 12; $i++) {
+            $endingDate = Carbon::parse($startDate)->lastOfMonth()->format('Y-m-d');
+            $tracks     = $this->getByDates($startDate, $endingDate);
+            
+            if (count($tracks) > 0) {
+                foreach ($tracks as $track) {
+                    $trackDates[$startDate][] = $track;
+                }
+            } else {
+                $trackDates[$startDate] = [];
+            }
+
+            $startDate = Carbon::parse($endingDate)->addDay(1)->format('Y-m-d');            
+        }
+
+        return $trackDates;
+    }
+
+    public function getByDates($startDate, $endDate, )
+    {
+        return PlayedTrack::select('*')
+            ->where('played_date', '>=', $startDate)
+            ->where('played_date', '<=', $endDate)
+            ->get();
+    }
+
     public function getByDatesAndTimes($startDate, $endDate, $startingTime, $endingTime)
     {
         return PlayedTrack::select('*')

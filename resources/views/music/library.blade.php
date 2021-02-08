@@ -90,6 +90,13 @@
                                 </div>
                             </div>
                         </div>
+
+                        <!-- Monthly Plays Chart -->
+                        <div class="col-md-6">
+                            <h5><strong>Listening History</strong></h5>
+                            <canvas id="playsChart"></canvas>
+                        </div>
+                        <!--/Monthly Plays Chart -->
                    </div>
                 </div>
                 <div class="tab-pane fade p-2" id="tracks" role="tabpanel" aria-labelledby="tracks-tab">
@@ -106,5 +113,25 @@
     </div>
 </div>
 <!--/Changeable content based on tabs -->
+
+<script type="text/javascript">
+    var ctx = document.getElementById('playsChart');
+    ctx.height = 200;
+
+    var playsChart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
+            datasets: [{
+                label: 'Played Tracks',
+                data: [
+                    @foreach ($trackCountPerTimeMonth as $item => $trackCount)
+                        {{ count($trackCount) }},
+                    @endforeach
+                ],
+            }]
+        },
+    });
+</script>
 
 @endsection

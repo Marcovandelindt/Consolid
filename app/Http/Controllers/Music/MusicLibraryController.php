@@ -39,6 +39,7 @@ class MusicLibraryController extends Controller
      */
     public function index(): View
     {
+
         $data = [
             'title'                 => 'Library',
             'tracks'                => $this->playedTrackRepository->all(),
@@ -50,6 +51,7 @@ class MusicLibraryController extends Controller
             'topAlbums'             => $this->albumRepository->getTopAlbums(5),
             'topArtists'            => $this->artistRepository->getTopArtists(5),
             'averagePlays'          => $this->playedTrackRepository->calculateAveragePlays(),
+            'trackCountPerTimeMonth' => $this->playedTrackRepository->getTrackCountPerTimeMonth(),
         ]; 
 
         return view('music.library')->with($data);
