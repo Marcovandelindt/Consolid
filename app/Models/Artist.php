@@ -4,9 +4,13 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
+
+use App\Services\PlayedTrackService;
 
 use App\Models\Track;
 use App\Models\Album;
+use App\Models\PlayedTrack;
 
 class Artist extends Model
 {
@@ -77,5 +81,30 @@ class Artist extends Model
         }
       
         return count($played);
+    }
+
+    /**
+     * Get the total listening time of an artist
+     * 
+     * @return string
+     */
+    public function getTotalListeningTime() 
+    {
+        $played = [];
+
+        foreach ($this->tracks as $track) {
+           $results = PlayedTrack::where('track_id', $track->id)->get();
+           if (count($results) > 1) {
+               foreach ($results as $result) {
+                   $played[] = $result;
+               }
+           } else {
+              $played[] = $results[0];
+           }
+        }
+
+        $playedTrackService = new PlayedTrackService();
+
+        return $playedTrackService->calculateListeningTime($played, true);
     }
 }

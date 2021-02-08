@@ -3,19 +3,40 @@
 @section('content')
 <div class="row">
     <div class="col-lg-3">
-        <div class="card custom-card">
-            <div class="card-head">
-                <div class="align-self-center halfway-fab text-center p-1">
-                    <span class="avatar avatar-lg avatar-online rounded-circle">
-                        <img src="{{ $artist->image }}" />
-                    <span>
-                </div>
-                <div class="text-center">
-                    {{ $artist->name }}
+        <div class="col-lg-12">
+            <div class="card custom-card">
+                <div class="card-head">
+                    <div class="align-self-center halfway-fab text-center p-1">
+                        <span class="avatar avatar-lg avatar-online rounded-circle">
+                            <img src="{{ $artist->image }}" />
+                        <span>
+                    </div>
+                    <div class="text-center">
+                        {{ $artist->name }}
+                    </div>
                 </div>
             </div>
-            <div class="card-body text-center">
-                <p><strong>Total Plays: {{ $artist->getPlayCount() }}</strong></p>
+        </div>
+        <br />
+        <div class="col-lg-12">
+            <div class="card text-center">
+                <div class="card-header">
+                    <h5>Total Plays</h5>
+                </div>
+                <div class="card-body">
+                    <h5 class="p-0"><strong>{{ $artist->getPlayCount() }}</strong></h5>
+                </div>
+            </div>
+        </div>
+        <br />
+         <div class="col-lg-12">
+            <div class="card text-center">
+                <div class="card-header">
+                    <h5>Total Listening Time</h5>
+                </div>
+                <div class="card-body">
+                    <h5 class="p-0"><strong>{{ $artist->getTotalListeningTime() }}</strong></h5>
+                </div>
             </div>
         </div>
     </div>
