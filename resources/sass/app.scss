@@ -249,3 +249,52 @@
         font-size: 20px;
     }
 }
+
+.panel-statistics-data {
+    display: flex;
+
+    .data-item-heading {
+        font-weight: bold;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        font-size: 16px;
+        color: #212121;
+    }
+
+    .data-item-statistic {
+        color: grey;
+        font-weight: bold;
+    }
+}
+
+.flexed-media {
+    display: flex;
+    flex-direction: row;
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 10px;
+    padding-top: 10px;
+    font-size: 13px;
+
+
+    .track-name,
+    .artist-names,
+    .played-time {
+        margin-left: 15px;
+        padding-top: 7px;
+        text-align: center;
+        width: 33%;
+    }
+
+    .track-name {
+        a {
+            color: #000;
+            font-weight: bold;
+        }
+    }
+
+    .artist-names {
+        a {
+            color: grey;
+        }
+    }
+}

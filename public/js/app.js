@@ -3801,7 +3801,12 @@ $('#sidebar-toggle').on('click', function (e) {
   $('#wrapper').toggleClass('toggled');
 }); // Initialize CKEditor
 
-CKEDITOR.replace('customEditor');
+CKEDITOR.replace('customEditor'); // Music Tabs
+
+$('#musicTab a').on('click', function (e) {
+  e.preventDefault();
+  $(this).tab('show');
+});
 
 /***/ }),
 
@@ -36336,6 +36341,19 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/sass/auth.scss":
+/*!**********************************!*\
+  !*** ./resources/sass/auth.scss ***!
+  \**********************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+// extracted by mini-css-extract-plugin
+
+
+/***/ }),
+
 /***/ "./node_modules/popper.js/dist/esm/popper.js":
 /*!***************************************************!*\
   !*** ./node_modules/popper.js/dist/esm/popper.js ***!
@@ -39258,7 +39276,8 @@ process.umask = function() { return 0; };
 /******/ 		
 /******/ 		var deferredModules = [
 /******/ 			["./resources/js/app.js"],
-/******/ 			["./resources/sass/app.scss"]
+/******/ 			["./resources/sass/app.scss"],
+/******/ 			["./resources/sass/auth.scss"]
 /******/ 		];
 /******/ 		// no chunk on demand loading
 /******/ 		

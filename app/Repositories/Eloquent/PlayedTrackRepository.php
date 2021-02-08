@@ -82,7 +82,7 @@ class PlayedTrackRepository implements PlayedTrackRepositoryInterface
 
         return $tracks;
     }
-    
+
     /**
      * Get top tracks based
      * 
@@ -151,5 +151,20 @@ class PlayedTrackRepository implements PlayedTrackRepositoryInterface
             ->where('time', '>=', $startingTime)
             ->where('time', '<=', $endingTime)
             ->get();
+    }
+
+    /**
+     * Calculate the average listening time since the start
+     */
+    public function calculateAveragePlays()
+    {
+        $first  = PlayedTrack::all()->first(); 
+        
+        $start = Carbon::parse($first->played_date . ' ' . $first->time);
+        $end   = Carbon::now();
+
+        $difference = $start->diffInDays($end);
+
+        return (int) round(count($this->all()) / $difference, 0);
     }
 }

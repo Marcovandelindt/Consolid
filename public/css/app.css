@@ -10172,3 +10172,42 @@ h3 {
   font-weight: bold;
   font-size: 20px;
 }
+
+.panel-statistics-data {
+  display: flex;
+}
+.panel-statistics-data .data-item-heading {
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-size: 16px;
+  color: #212121;
+}
+.panel-statistics-data .data-item-statistic {
+  color: grey;
+  font-weight: bold;
+}
+
+.flexed-media {
+  display: flex;
+  flex-direction: row;
+  border-bottom: 1px solid #ccc;
+  padding-bottom: 10px;
+  padding-top: 10px;
+  font-size: 13px;
+}
+.flexed-media .track-name,
+.flexed-media .artist-names,
+.flexed-media .played-time {
+  margin-left: 15px;
+  padding-top: 7px;
+  text-align: center;
+  width: 33%;
+}
+.flexed-media .track-name a {
+  color: #000;
+  font-weight: bold;
+}
+.flexed-media .artist-names a {
+  color: grey;
+}

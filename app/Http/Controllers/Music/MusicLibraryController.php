@@ -49,6 +49,7 @@ class MusicLibraryController extends Controller
             'topTracks'             => $this->playedTrackRepository->getTopTracks(5),
             'topAlbums'             => $this->albumRepository->getTopAlbums(5),
             'topArtists'            => $this->artistRepository->getTopArtists(5),
+            'averagePlays'          => $this->playedTrackRepository->calculateAveragePlays(),
         ]; 
 
         return view('music.library')->with($data);
