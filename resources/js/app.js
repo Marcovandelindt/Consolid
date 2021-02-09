@@ -10,3 +10,9 @@ $('#sidebar-toggle').on('click', function (e) {
 
 // Initialize CKEditor
 CKEDITOR.replace('customEditor');
+
+// Music Tabs
+$('#musicTab a').on('click', function (e) {
+    e.preventDefault();
+    $(this).tab('show');
+});

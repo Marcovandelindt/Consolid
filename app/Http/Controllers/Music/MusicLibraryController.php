@@ -35,21 +35,61 @@ class MusicLibraryController extends Controller
     /**
      * Show the library view
      * 
+     * @param \Illuminate\Http\Request $request
+     * 
      * @return \Illuminate\View\View
      */
-    public function index(): View
+    public function index(Request $request): View
     {
-        $data = [
-            'title'                 => 'Library',
-            'tracks'                => $this->playedTrackRepository->all(),
-            'albums'                => $this->albumRepository->all(),
-            'artists'               => $this->artistRepository->all(),
-            'listeningTime'         => $this->playedTrackRepository->calculateListeningTime('total'),
-            'paginatedPlayedTracks' => $this->playedTrackRepository->all(25),
-            'topTracks'             => $this->playedTrackRepository->getTopTracks(5),
-            'topAlbums'             => $this->albumRepository->getTopAlbums(5),
-            'topArtists'            => $this->artistRepository->getTopArtists(5),
-        ]; 
+        $data = [];
+
+        if (empty($request->from) && empty($request->range)) {
+            
+            // Get data since start
+            $data = [
+                'title'                 => 'Library',
+                'tracks'                => $this->playedTrackRepository->all(),
+                'albums'                => $this->albumRepository->all(),
+                'artists'               => $this->artistRepository->all(),
+                'listeningTime'         => $this->playedTrackRepository->calculateListeningTime('total'),
+                'paginatedPlayedTracks' => $this->playedTrackRepository->all(25),
+                'averagePlaysPerDay'    => $this->playedTrackRepository->calculateAveragePlays('total'),
+                'yearlyTrackCount'      => $this->playedTrackRepository->getPlayedTracksCount('yearly'),
+            ];
+
+        } elseif (!empty($request->from) && $request->range == 'year') {
+
+            // Get data from selected year
+            $data = [
+                'tracks'                => $this->playedTrackRepository->all(),
+                'albums'                => $this->albumRepository->all(),
+                'artists'               => $this->artistRepository->all(),
+                'listeningTime'         => $this->playedTrackRepository->calculateListeningTime('total'),
+                'paginatedPlayedTracks' => $this->playedTrackRepository->all(25),
+            ];
+
+        } elseif (!empty($request->from) && $request->range == 'month') {
+
+            // Get data from selected month
+            $data = [
+                'tracks'                => $this->playedTrackRepository->all(),
+                'albums'                => $this->albumRepository->all(),
+                'artists'               => $this->artistRepository->all(),
+                'listeningTime'         => $this->playedTrackRepository->calculateListeningTime('total'),
+                'paginatedPlayedTracks' => $this->playedTrackRepository->all(25),
+            ];
+
+        } elseif (!empty($request->from) && $request->range == 'day') {
+            
+            // Get data from selected day
+            $data = [
+                'tracks'                => $this->playedTrackRepository->all(),
+                'albums'                => $this->albumRepository->all(),
+                'artists'               => $this->artistRepository->all(),
+                'listeningTime'         => $this->playedTrackRepository->calculateListeningTime('total'),
+                'paginatedPlayedTracks' => $this->playedTrackRepository->all(25),
+            ];
+        }
 
         return view('music.library')->with($data);
     }

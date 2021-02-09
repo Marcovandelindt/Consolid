@@ -152,4 +152,106 @@ class PlayedTrackRepository implements PlayedTrackRepositoryInterface
             ->where('time', '<=', $endingTime)
             ->get();
     }
+
+    /**
+     * Calculate the average plays based on a given timeframe
+     * 
+     * @param string $timeFrame
+     * @param string $startDate
+     * 
+     * @return int
+     */
+    public function calculateAveragePlays($timeFrame, $startDate = null): int
+    {
+        $average = 0;
+
+        switch ($timeFrame) {
+            case 'total':
+                
+                $firstTrack = PlayedTrack::all()->first();
+
+                $startDate = Carbon::parse($firstTrack->played_date . ' ' . $firstTrack->time);
+                $endDate   = Carbon::now();
+
+                $difference = $startDate->diffInDays($endDate);
+
+                $average = (int) round(count($this->all()) / $difference);
+
+                break;
+            case 'yearly':
+
+                break;
+            case 'monthly':
+
+                break;
+            case 'daily':
+
+                break;
+        }
+
+        return $average;
+    }
+
+    /**
+     * Get the played tracks count based on a given timeFrame
+     * 
+     * @param string $timeFrame
+     * @param string $startDate
+     */
+    public function getPlayedTracksCount($timeFrame, $startDate = null) 
+    {
+        switch ($timeFrame) {
+            case 'yearly':
+
+                # Get the first and last records to determine the start and end dates
+                $first      = Carbon::parse(PlayedTrack::get()->first()->played_date);
+                $last       = Carbon::parse(PlayedTrack::get()->last()->played_date);
+                $difference = $first->diffInYears($last);
+
+                $startDate = $first->startOfYear()->format('Y-m-d');
+                $endDate   = $last->endOfYear()->format('Y-m-d');
+
+                $trackYears = [];
+
+                for ($i = 0; $i <= $difference; $i++) {
+                    $endingDate = Carbon::parse($startDate)->endOfYear()->format('Y-m-d');
+                    $tracks     = $this->getByDates($startDate, $endingDate);
+
+                    if (count($tracks) > 0) {
+                        foreach ($tracks as $track) {
+                            $trackYears[date('Y', strtotime($startDate))][] = $track;
+                        }
+                    } else {
+                        $trackYears[date('Y', strtotime($startDate))] = [];
+                    }
+
+                    $startDate = Carbon::parse($endingDate)->addDays(1)->format('Y-m-d');
+                }
+
+                break;
+            case 'monthly':
+                    
+                break;
+            case 'daily': 
+
+                break;
+
+        }
+
+        return $trackYears;
+    }
+
+    /**
+     * Get tracks based on start and end date
+     * 
+     * @param string $startDate
+     * @param string $endDate
+     */
+    public function getByDates($startDate, $endDate)
+    {
+        return PlayedTrack::select('*')
+            ->where('played_date', '>=', $startDate)
+            ->where('played_date', '<=', $endDate)
+            ->get();
+    }
 }
