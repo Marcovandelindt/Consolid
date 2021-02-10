@@ -55,6 +55,7 @@ class MusicLibraryController extends Controller
                 'paginatedPlayedTracks' => $this->playedTrackRepository->all(25),
                 'averagePlaysPerDay'    => $this->playedTrackRepository->calculateAveragePlays('total'),
                 'yearlyTrackCount'      => $this->playedTrackRepository->getPlayedTracksCount('yearly'),
+                'requestType'           => 'library'
             ];
 
         } elseif (!empty($request->from) && $request->range == 'year') {
@@ -91,6 +92,6 @@ class MusicLibraryController extends Controller
             ];
         }
 
-        return view('music.library')->with($data);
+        return view('music.library.index')->with($data);
     }
 }

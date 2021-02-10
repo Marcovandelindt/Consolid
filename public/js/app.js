@@ -3801,12 +3801,7 @@ $('#sidebar-toggle').on('click', function (e) {
   $('#wrapper').toggleClass('toggled');
 }); // Initialize CKEditor
 
-CKEDITOR.replace('customEditor'); // Music Tabs
-
-$('#musicTab a').on('click', function (e) {
-  e.preventDefault();
-  $(this).tab('show');
-});
+CKEDITOR.replace('customEditor');
 
 /***/ }),
 

@@ -29,4 +29,6 @@ interface PlayedTrackRepositoryInterface
     public function getPlayedTracksCount($timeFrame, $startDate = null);
 
     public function getByDates($startDate, $endDate);
+
+    public function getUniquePlayedTracks($timeFrame, $paginatedResults = null);
 }

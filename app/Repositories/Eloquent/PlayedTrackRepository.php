@@ -254,4 +254,33 @@ class PlayedTrackRepository implements PlayedTrackRepositoryInterface
             ->where('played_date', '<=', $endDate)
             ->get();
     }
+
+    /**
+     * Get the unique played tracks
+     * 
+     * @param string $timeFrame
+     * @param mixed  $paginatedResults
+     */
+    public function getUniquePlayedTracks($timeFrame, $paginatedResults = null)
+    {
+        $results = [];
+
+        switch ($timeFrame) {
+            case 'total':
+                if (is_numeric($paginatedResults)) {
+                    $results = PlayedTrack::select('*', DB::raw('COUNT(*) AS `total`'))
+                        ->groupBy('track_id')
+                        ->orderByRaw('COUNT(*) DESC')
+                        ->paginate($paginatedResults);
+                } else {
+                    $results = PlayedTrack::select('*', DB::raw('COUNT(*) AS `total`'))
+                        ->groupBy('track_id')
+                        ->orderByRaw('COUNT(*) DESC')
+                        ->get();
+                }
+                break;
+        }
+
+        return $results;
+    }
 }

@@ -29,8 +29,28 @@
 
 <div class="row">
     <div class="col-md-12">
-
-        @include('components.library-tabs')      
+        <ul class="nav nav-tabs" id="musicTab" role="tablist">
+            <li class="nav-item">
+                <a class="nav-link active" id="plays-tab" href="{{ route('music.library') }}" role="tab" aria-selected="{{ ($requestType == 'library' ? 'true' : 'false') }}">
+                    <i class="fas fa-clock"></i> Plays
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" id="tracks-tab" href="{{ route('music.library.tracks') }}" role="tab" aria-selected="{{ $requestType == 'tracks' ? 'true' : 'false' }}">
+                    <i class="fas fa-music"></i> Tracks
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" id="artists-tab" href="#artists" role="tab" aria-selected="false">
+                    <i class="fas fa-star"></i> Artists
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" id="albums-tab" href="#albums" role="tab" aria-selected="false">
+                    <i class="fas fa-compact-disc"></i> Albums
+                </a>
+            </li>
+        </ul>
 
         <!-- Changeable Content -->
         <div class="tab-content" id="musicTabContent">
@@ -91,12 +111,6 @@
                 </div>
             </div>
             <!-- /Plays Tab Content -->
-
-            <!-- Tracks Tab Content -->
-            <div class="tab-pane fade pt-3 pl-1" id="tracks" role="tabpanel" aria-labelledby="tracks-tab">
-                Tracks
-            </div>
-            <!-- /Tracks Tab Content -->
 
             <!-- Artists Tab Content -->
             <div class="tab-pane fade pt-3 pl-1" id="artists" role="tabpanel" aria-labelledby="artists-tab">

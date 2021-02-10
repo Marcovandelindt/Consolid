@@ -14,6 +14,7 @@ use App\Http\Controllers\TrackController;
 use App\Http\Controllers\WeatherController;
 use App\Http\Controllers\JournalController;
 use App\Http\Controllers\JournalEntryController;
+use App\Http\Controllers\Music\MusicLibraryTracksController;
 use App\Models\JournalEntry;
 
 /*
@@ -43,6 +44,8 @@ Route::get('/music/authenticate', [MusicAuthenticateController::class, 'index'])
 Route::get('/music/request-access-token', [MusicRequestAccessTokenController::class, 'store'])->name('music.request');
 Route::get('/music/get-recent-tracks', [MusicGetRecentTracksController::class, 'create'])->name('music.recent');
 Route::get('/music/library', [MusicLibraryController::class, 'index'])->name('music.library');
+
+Route::get('/music/library/tracks', [MusicLibraryTracksController::class, 'index'])->name('music.library.tracks');
 
 Route::get('/music/reports/weekly', [MusicWeeklyReportController::class, 'index'])->name('reports.weekly');
 
