@@ -14,6 +14,7 @@ use App\Http\Controllers\TrackController;
 use App\Http\Controllers\WeatherController;
 use App\Http\Controllers\JournalController;
 use App\Http\Controllers\JournalEntryController;
+use App\Http\Controllers\Music\MusicLibraryArtistsController;
 use App\Http\Controllers\Music\MusicLibraryTracksController;
 use App\Models\JournalEntry;
 
@@ -46,6 +47,7 @@ Route::get('/music/get-recent-tracks', [MusicGetRecentTracksController::class, '
 Route::get('/music/library', [MusicLibraryController::class, 'index'])->name('music.library');
 
 Route::get('/music/library/tracks', [MusicLibraryTracksController::class, 'index'])->name('music.library.tracks');
+Route::get('/music/library/artists', [MusicLibraryArtistsController::class, 'index'])->name('music.library.artists');
 
 Route::get('/music/reports/weekly', [MusicWeeklyReportController::class, 'index'])->name('reports.weekly');
 

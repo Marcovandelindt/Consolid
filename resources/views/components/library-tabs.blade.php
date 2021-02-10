@@ -10,7 +10,7 @@
         </a>
     </li>
     <li class="nav-item">
-        <a class="nav-link" id="artists-tab" href="#artists" role="tab" aria-selected="false">
+        <a class="nav-link {{ $requestType == 'artists' ? 'active' : '' }}" id="artists-tab" href="{{ route('music.library.artists') }}" role="tab" aria-selected="{{ $requestType == 'artists' ? 'true' : 'false' }}">
             <i class="fas fa-star"></i> Artists
         </a>
     </li>

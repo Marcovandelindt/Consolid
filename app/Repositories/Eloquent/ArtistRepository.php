@@ -9,6 +9,7 @@ use App\Models\Artist;
 use App\Models\PlayedTrack;
 use App\Repositories\ArtistRepositoryInterface;
 use App\Repositories\PlayedTrackRepository;
+use Illuminate\Database\Eloquent\Collection;
 
 class ArtistRepository implements ArtistRepositoryInterface 
 {
@@ -51,5 +52,42 @@ class ArtistRepository implements ArtistRepositoryInterface
             ->orderByRaw('COUNT(*) DESC')
             ->limit($limit)
             ->get();
+    }
+
+    /**
+     * Get the uniquely played artists based on a given timeframe
+     * 
+     * @param string $timeFrame
+     * @param mixed  $paginatedResults
+     * 
+     * @return mixed
+     */
+    public function getUniquePlayedArtists($timeFrame, $paginatedResults = null): mixed
+    {
+        $results = [];
+
+        switch ($timeFrame) {
+            case 'total':
+
+                if (is_numeric($paginatedResults)) {
+                    $results = Artist::select('artists.*', DB::raw('COUNT(*) as `total`'))
+                        ->join('artist_track', 'artists.id', '=', 'artist_track.artist_id')
+                        ->join('played_tracks', 'artist_track.track_id', '=', 'played_tracks.track_id')
+                        ->groupBy('artists.id')
+                        ->orderByRaw('COUNT(*) DESC')
+                        ->paginate($paginatedResults);
+                } else {
+                    $results = Artist::select('artists.*', DB::raw('COUNT(*) as `total`'))
+                        ->join('artist_track', 'artists.id', '=', 'artist_track.artist_id')
+                        ->join('played_tracks', 'artist_track.track_id', '=', 'played_tracks.track_id')
+                        ->groupBy('artists.id')
+                        ->orderByRaw('COUNT(*) DESC')
+                        ->get();
+                }
+
+                break;
+        }
+
+        return $results;
     }
 }

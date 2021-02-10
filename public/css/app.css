@@ -10208,7 +10208,18 @@ h3 {
   text-align: center;
   width: 33%;
 }
+.flexed-media .artist-name,
+.flexed-media .artist-plays {
+  margin-left: 15px;
+  padding-top: 7px;
+  text-align: center;
+  width: 50%;
+}
 .flexed-media .track-name a {
+  color: #000;
+  font-weight: bold;
+}
+.flexed-media .artist-name a {
   color: #000;
   font-weight: bold;
 }

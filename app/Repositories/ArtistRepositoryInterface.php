@@ -15,4 +15,6 @@ interface ArtistRepositoryInterface
     public function all();
 
     public function getTopArtists($limit);
+
+    public function getUniquePlayedArtists($timeFrame, $paginatedResults = null);
 }
