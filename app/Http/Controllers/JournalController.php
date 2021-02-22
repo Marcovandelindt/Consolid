@@ -31,9 +31,9 @@ class JournalController extends Controller
      *
      * @param int $id
      *
-     * @return \Illuminate\View\View 
+     * @return \Illuminate\View\View
      */
-    public function index($id): View 
+    public function index($id): View
     {
         $journal = Journal::findOrFail($id);
 
@@ -69,7 +69,7 @@ class JournalController extends Controller
      *
      * @return  \Illuminate\View\View
      */
-    public function create(): View 
+    public function create(): View
     {
     	$data = [
     		'title' => 'Create Journal'
@@ -95,7 +95,7 @@ class JournalController extends Controller
     	$journal->save();
 
     	return redirect()
-    		->route('journals')
+    		->route('journals.overview')
     		->with('status', 'Journal successfully saved');
     }
 
@@ -106,7 +106,7 @@ class JournalController extends Controller
      *
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function edit($id): View 
+    public function edit($id): View
     {
         $journal = Journal::findOrFail($id);
 
@@ -135,6 +135,6 @@ class JournalController extends Controller
 
         $journal->save();
 
-        return redirect()->route('journals')->with('status', 'Journal successfully edited');
+        return redirect()->route('journals.overview')->with('status', 'Journal successfully edited');
     }
 }
