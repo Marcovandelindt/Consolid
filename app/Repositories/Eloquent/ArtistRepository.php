@@ -11,7 +11,7 @@ use App\Repositories\ArtistRepositoryInterface;
 use App\Repositories\PlayedTrackRepository;
 use Illuminate\Database\Eloquent\Collection;
 
-class ArtistRepository implements ArtistRepositoryInterface 
+class ArtistRepository implements ArtistRepositoryInterface
 {
     /**
      * Get all played albums today
@@ -40,7 +40,7 @@ class ArtistRepository implements ArtistRepositoryInterface
 
     /**
      * Get the top artists
-     * 
+     *
      * @param int $limit
      */
     public function getTopArtists($limit)
@@ -56,13 +56,13 @@ class ArtistRepository implements ArtistRepositoryInterface
 
     /**
      * Get the uniquely played artists based on a given timeframe
-     * 
+     *
      * @param string $timeFrame
      * @param mixed  $paginatedResults
-     * 
+     *
      * @return mixed
      */
-    public function getUniquePlayedArtists($timeFrame, $paginatedResults = null): mixed
+    public function getUniquePlayedArtists($timeFrame, $paginatedResults = null)
     {
         $results = [];
 
