@@ -17,6 +17,10 @@ use App\Http\Controllers\JournalEntryController;
 use App\Http\Controllers\Music\MusicLibraryArtistsController;
 use App\Http\Controllers\Music\MusicLibraryTracksController;
 use App\Models\JournalEntry;
+use App\Http\Controllers\BuildingBin\BuildingBinController;
+use App\Http\Controllers\BuildingBin\FrontendController;
+use App\Http\Controllers\BuildingBin\BackendController;
+use App\Http\Controllers\BuildingBin\InformationController;
 
 /*
 |--------------------------------------------------------------------------
@@ -32,7 +36,7 @@ use App\Models\JournalEntry;
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
 /**
- * Weather routes 
+ * Weather routes
  */
 Route::get('/weather', [WeatherController::class, 'index'])->name('weather');
 Route::get('/weather/update', [WeatherController::class, 'update'])->name('weather.update');
@@ -79,5 +83,13 @@ Route::get('/journals/{id}/create-entry', [JournalEntryController::class, 'creat
 Route::post('/journals/{id}/create-entry', [JournalEntryController::class, 'store']);
 Route::get('/journals/{id}/entry/{entry_id}/edit', [JournalEntryController::class, 'edit'])->name('journals.entries.edit');
 Route::post('/journals/{id}/entry/{entry_id}', [JournalEntryController::class, 'update']);
+
+/**
+ * Building Bin Routes
+ */
+Route::get('/building-bin', [BuildingBinController::class, 'index'])->name('building.bin');
+Route::get('/building-bin/frontend', [FrontendController::class, 'index'])->name('building.bin.frontend');
+Route::get('/building-bin/backend', [BackendController::class, 'index'])->name('building.bin.backend');
+Route::get('/building-bin/information', [InformationController::class, 'index'])->name('building.bin.information');
 
 require __DIR__.'/auth.php';

@@ -23,21 +23,9 @@
             <i class="fas fa-calendar sidebar-icon"></i>
             <span class="item-name">To Do</span>
         </a>
-        <a href="{{ route('home') }}" class="list-group-item list-group-item-action bg-light">
-            <i class="fab fa-twitch sidebar-icon"></i>
-            <span class="item-name">Twitch</span>
-        </a>
-        <a href="{{ route('home') }}" class="list-group-item list-group-item-action bg-light">
-            <i class="fab fa-facebook sidebar-icon"></i>
-            <span class="item-name">Facebook</span>
-        </a>
-        <a href="{{ route('home') }}" class="list-group-item list-group-item-action bg-light">
-            <i class="fab fa-twitter sidebar-icon"></i>
-            <span class="item-name">Twitter</span>
-        </a>
-        <a href="{{ route('home') }}" class="list-group-item list-group-item-action bg-light">
-            <i class="fab fa-instagram sidebar-icon"></i>
-            <span class="item-name">Instagram</span>
+        <a href="{{ route('building.bin') }}" class="list-group-item list-group-item-action bg-light">
+            <i class="fas fa-dumpster sidebar-icon"></i>
+            <span class="item-name">Building Bin</span>
         </a>
         <a href="{{ route('home') }}" class="list-group-item list-group-item-action bg-light">
             <i class="fas fa-newspaper sidebar-icon"></i>
