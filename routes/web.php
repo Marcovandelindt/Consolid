@@ -92,4 +92,7 @@ Route::get('/building-bin/frontend', [FrontendController::class, 'index'])->name
 Route::get('/building-bin/backend', [BackendController::class, 'index'])->name('building.bin.backend');
 Route::get('/building-bin/information', [InformationController::class, 'index'])->name('building.bin.information');
 
+Route::get('/health/fitbit-connect', [\App\Http\Controllers\Fitbit\GrantAccessController::class, 'getAuthorizationCode']);
+Route::get('/health/fitbit-connect/get-access-token', [\App\Http\Controllers\Fitbit\GrantAccessController::class, 'getAccessToken']);
+
 require __DIR__.'/auth.php';
