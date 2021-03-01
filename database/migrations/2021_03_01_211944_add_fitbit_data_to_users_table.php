@@ -14,8 +14,8 @@ class AddFitbitDataToUsersTable extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->string('fitbitAccessToken')->nullable();
-            $table->string('fitbitRefreshToken')->nullable();
+            $table->text('fitbitAccessToken')->nullable();
+            $table->text('fitbitRefreshToken')->nullable();
         });
     }
 
