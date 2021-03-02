@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use djchen\OAuth2\Client\Provider\Fitbit;
 use Illuminate\Http\Request;
 
-use App\Services\FitbitService;
+use App\Services\Fitbit\ActivityService;
 
 class HealthController extends Controller
 {
@@ -30,6 +30,6 @@ class HealthController extends Controller
      */
     public function index()
     {
-        dd(FitbitService::getTodaysSteps($this->fitbitProvider));
+        dd(ActivityService::getCaloriesBurnedDuringActivity());
     }
 }
