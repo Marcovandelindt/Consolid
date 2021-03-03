@@ -14,8 +14,9 @@ class AddFitbitDataToUsersTable extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->text('fitbitAccessToken')->nullable();
-            $table->text('fitbitRefreshToken')->nullable();
+            $table->text('fitbit_access_token')->nullable();
+            $table->text('fitbit_refresh_token')->nullable();
+            $table->text('fitbit_access_token_expiry')->nullable();
         });
     }
 
@@ -27,8 +28,8 @@ class AddFitbitDataToUsersTable extends Migration
     public function down()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->dropColumn('fitbitAccessToken');
-            $table->dropColumn('fitbitRefreshToken');
+            $table->dropColumn('fitbit_access_token');
+            $table->dropColumn('fitbit_refresh_token');
         });
     }
 }

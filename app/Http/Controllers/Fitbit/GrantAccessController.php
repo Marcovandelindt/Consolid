@@ -65,8 +65,9 @@ class GrantAccessController extends Controller
             # Get currently authenticated user and store access and refresh token
             $user = Auth::user();
 
-            $user->fitbitAccessToken  = $accessToken->getToken();
-            $user->fitbitRefreshToken = $accessToken->getRefreshToken();
+            $user->fitbit_access_token        = $accessToken->getToken();
+            $user->fitbit_refresh_token       = $accessToken->getRefreshToken();
+            $user->fitbit_access_token_expiry = $accessToken->getExpires();
 
             $user->save();
 

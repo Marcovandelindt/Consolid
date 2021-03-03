@@ -28,7 +28,7 @@ class FitbitService
         $request = $fitbitProvider->getAuthenticatedRequest(
             Fitbit::METHOD_GET,
             Fitbit::BASE_FITBIT_API_URL . '/1/user/-/' . $endpoint . '/date/' . date('Y-m-d') . (!empty($timePeriod) ? '/' . $timePeriod : '/1d') . '.json',
-            Auth::user()->fitbitAccessToken,
+            Auth::user()->getFitbitAccessToken(),
             [
                 'headers' => [
                     Fitbit::HEADER_ACCEPT_LANG => 'en_US'
