@@ -8,9 +8,9 @@ use App\Repositories\Eloquent\PlayedTrackRepository;
 
 use App\Models\PlayedTrack;
 
-interface PlayedTrackRepositoryInterface 
+interface PlayedTrackRepositoryInterface
 {
-    public function today();
+    public function today($limit = null);
 
     public function all($results = null);
 

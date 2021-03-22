@@ -16,7 +16,7 @@
         @include('components.cards.artist-card')
     </div>
      <div class="col-xl-3">
-        @include('components.cards.listening-time-card')    
+        @include('components.cards.listening-time-card')
     </div>
 </div>
 
@@ -35,7 +35,9 @@
                             @foreach ($tracks as $playedTrack)
                                 <div class="media">
                                     <a href="{{ route('track', ['id' => $playedTrack->track_id]) }}" class="media-left">
-                                        <img src="{{ $playedTrack->track->album->image }}" height="64" />
+                                        @if (!empty($playedTrack->track->album))
+                                            <img src="{{ $playedTrack->track->album->image }}" height="64" />
+                                        @endif
                                     </a>
                                     <div class="media-body">
                                         <h4 class="media-heading">
@@ -55,7 +57,14 @@
                 </div>
             </div>
         </div>
+
+        @if (!empty($tracks->links()))
         <br />
+            <div class="pagination">
+                {{ $tracks->links() }}
+            </div>
+        <br />
+        @endif
     </div>
 
     <div class="col-xl-6 col-lg-12 text-center">

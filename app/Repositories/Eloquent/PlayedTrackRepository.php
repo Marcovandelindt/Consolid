@@ -27,19 +27,27 @@ class PlayedTrackRepository implements PlayedTrackRepositoryInterface
 
     /**
      * Get all played tracks from the current date
-     * 
+     *
+     * @param mixed $limit
+     *
      * @return Collection
      */
-    public function today(): Collection 
+    public function today($limit = null)
     {
-        return PlayedTrack::orderBy('played_at', 'DESC')
-            ->where('played_date', date('Y-m-d')
-            )->get();
+        if (!empty($limit)) {
+            return PlayedTrack::orderBy('played_at', 'DESC')
+                ->where('played_date', date('Y-m-d'))
+                ->paginate($limit);
+        } else {
+            return PlayedTrack::orderBy('played_at', 'DESC')
+                ->where('played_date', date('Y-m-d'))
+                ->get();
+        }
     }
 
     /**
      * Calculate the listening time
-     * 
+     *
      * @param string $timeFrame
      * @param bool   $formatted
      */
@@ -82,10 +90,10 @@ class PlayedTrackRepository implements PlayedTrackRepositoryInterface
 
         return $tracks;
     }
-    
+
     /**
      * Get top tracks based
-     * 
+     *
      * @param $limit
      */
     public function getTopTracks($limit)
@@ -99,10 +107,10 @@ class PlayedTrackRepository implements PlayedTrackRepositoryInterface
 
     /**
      * Get all tracks for a certain week
-     * 
+     *
      * @param string $startDate
      * @param string $endDate
-     * 
+     *
      * @return \EloquentCollection
      */
     public function getWeekly($startDate, $endDate)
@@ -155,10 +163,10 @@ class PlayedTrackRepository implements PlayedTrackRepositoryInterface
 
     /**
      * Calculate the average plays based on a given timeframe
-     * 
+     *
      * @param string $timeFrame
      * @param string $startDate
-     * 
+     *
      * @return int
      */
     public function calculateAveragePlays($timeFrame, $startDate = null): int
@@ -167,7 +175,7 @@ class PlayedTrackRepository implements PlayedTrackRepositoryInterface
 
         switch ($timeFrame) {
             case 'total':
-                
+
                 $firstTrack = PlayedTrack::all()->first();
 
                 $startDate = Carbon::parse($firstTrack->played_date . ' ' . $firstTrack->time);
@@ -194,11 +202,11 @@ class PlayedTrackRepository implements PlayedTrackRepositoryInterface
 
     /**
      * Get the played tracks count based on a given timeFrame
-     * 
+     *
      * @param string $timeFrame
      * @param string $startDate
      */
-    public function getPlayedTracksCount($timeFrame, $startDate = null) 
+    public function getPlayedTracksCount($timeFrame, $startDate = null)
     {
         switch ($timeFrame) {
             case 'yearly':
@@ -230,9 +238,9 @@ class PlayedTrackRepository implements PlayedTrackRepositoryInterface
 
                 break;
             case 'monthly':
-                    
+
                 break;
-            case 'daily': 
+            case 'daily':
 
                 break;
 
@@ -243,7 +251,7 @@ class PlayedTrackRepository implements PlayedTrackRepositoryInterface
 
     /**
      * Get tracks based on start and end date
-     * 
+     *
      * @param string $startDate
      * @param string $endDate
      */
@@ -257,7 +265,7 @@ class PlayedTrackRepository implements PlayedTrackRepositoryInterface
 
     /**
      * Get the unique played tracks
-     * 
+     *
      * @param string $timeFrame
      * @param mixed  $paginatedResults
      */

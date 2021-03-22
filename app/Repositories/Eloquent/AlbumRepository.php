@@ -9,7 +9,7 @@ use App\Models\PlayedTrack;
 use App\Repositories\AlbumRepositoryInterface;
 use App\Repositories\PlayedTrackRepository;
 
-class AlbumRepository implements AlbumRepositoryInterface 
+class AlbumRepository implements AlbumRepositoryInterface
 {
     /**
      * Get all played albums today
@@ -20,7 +20,9 @@ class AlbumRepository implements AlbumRepositoryInterface
 
         $albums = [];
         foreach ($playedTracks as $playedTrack) {
-            $albums[$playedTrack->track->album->id] = $playedTrack->track->album;
+            if (!empty($playedTrack->track->album)) {
+                $albums[$playedTrack->track->album->id] = $playedTrack->track->album;
+            }
         }
 
         return $albums;
@@ -36,10 +38,10 @@ class AlbumRepository implements AlbumRepositoryInterface
 
     /**
      * Get the top albums
-     * 
+     *
      * @param int $limit
      */
-    public function getTopAlbums($limit) 
+    public function getTopAlbums($limit)
     {
         return Album::select('albums.*', DB::raw('count(*) as album_count'))
                 ->join('tracks', 'albums.id', '=', 'tracks.album_id')

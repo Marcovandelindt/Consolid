@@ -16,7 +16,7 @@ class MusicController extends Controller
 
     /**
      * Constructor
-     * 
+     *
      */
     public function __construct(PlayedTrackRepositoryInterface $playedTrackRepository, AlbumRepositoryInterface $albumRepository, ArtistRepositoryInterface $artistRepository)
     {
@@ -29,14 +29,15 @@ class MusicController extends Controller
 
     /**
      * Show the index view
-     * 
+     *
      */
     public function index()
     {
         return view('music.index', [
             'title'             => 'Music',
             'page'              => 'music',
-            'tracks'            => $this->playedTrackRepository->today(),
+            'tracks'            => $this->playedTrackRepository->today(50),
+            'totalPlayedTracks' => count($this->playedTrackRepository->today()),
             'albums'            => $this->albumRepository->today(),
             'artists'           => $this->artistRepository->today(),
             'listeningTime'     => $this->playedTrackRepository->calculateListeningTime('daily'),
