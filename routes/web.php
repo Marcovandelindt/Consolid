@@ -97,9 +97,12 @@ Route::get('/health/fitbit-connect/get-access-token', [\App\Http\Controllers\Fit
 
 Route::get('/health', [\App\Http\Controllers\HealthController::class, 'index']);
 
-Route::get('artisan/fitbitcron', function () {
-    $artisan = \Illuminate\Support\Facades\Artisan::call('fitbit:cron');
-    dd(\Illuminate\Support\Facades\Artisan::output());
-});
+/**
+ * Food and Drinks Routes
+ */
+Route::get('/food-and-drinks', [App\Http\Controllers\FoodAndDrinksController::class, 'index'])
+    ->name('food_drinks');
 
-require __DIR__.'/auth.php';
+Route::post('/food-and-drinks', [App\Http\Controllers\FoodAndDrinksController::class, 'createFood']);
+
+require __DIR__ . '/auth.php';

@@ -11,7 +11,7 @@
     min-height: 100vh;
     margin-left: -15rem;
     transition: margin .25s ease-in-out;
-    box-shadow: 1px 0 30px rgba(0,0,0,.1);
+    box-shadow: 1px 0 30px rgba(0, 0, 0, .1);
 
     .sidebar-heading {
         padding: 0.875rem 1.25rem;
@@ -43,7 +43,7 @@
                 vertical-align: middle;
                 border-radius: 12%;
                 background: #fff;
-                box-shadow: 0 0 10px rgba(0,0,0,.12);
+                box-shadow: 0 0 10px rgba(0, 0, 0, .12);
                 position: relative;
             }
 
@@ -66,7 +66,7 @@
 }
 
 #top-navigation {
-    box-shadow: 1px 0 30px rgba(0,0,0,.1);
+    box-shadow: 1px 0 30px rgba(0, 0, 0, .1);
 }
 
 
@@ -87,7 +87,7 @@
 
 .custom-card {
     border: none;
-    box-shadow: 0 1px 15px 1px rgba(62,57,107,.07);
+    box-shadow: 0 1px 15px 1px rgba(62, 57, 107, .07);
     position: relative;
     padding: 10px;
 
@@ -112,10 +112,10 @@
 }
 
 .weather-card {
-    background-image: -webkit-linear-gradient(45deg,#fcaa01,#fece4d);
-    background-image: -moz-linear-gradient(45deg,#fcaa01,#fece4d);
-    background-image: -o-linear-gradient(45deg,#fcaa01,#fece4d);
-    background-image: linear-gradient(45deg,#fcaa01,#fece4d);
+    background-image: -webkit-linear-gradient(45deg, #fcaa01, #fece4d);
+    background-image: -moz-linear-gradient(45deg, #fcaa01, #fece4d);
+    background-image: -o-linear-gradient(45deg, #fcaa01, #fece4d);
+    background-image: linear-gradient(45deg, #fcaa01, #fece4d);
     background-repeat: repeat-x;
     color: #fff;
 }
@@ -168,7 +168,7 @@
     }
 
     .media-list {
-        
+
         .media {
             padding-bottom: 1rem;
 
@@ -190,19 +190,19 @@
 }
 
 .spotify-card {
-    background-image: linear-gradient(45deg,#63d457,#9fe797);
+    background-image: linear-gradient(45deg, #63d457, #9fe797);
 }
 
 .album-card {
-    background-image: linear-gradient(45deg,#ff8008,#ffc837);
+    background-image: linear-gradient(45deg, #ff8008, #ffc837);
 }
 
 .artist-card {
-    background-image: linear-gradient(45deg,#00cef9,#00e6af);
+    background-image: linear-gradient(45deg, #00cef9, #00e6af);
 }
 
 .listening-time-card {
-    background-image: linear-gradient(45deg,#f95058,#fc9197);
+    background-image: linear-gradient(45deg, #f95058, #fc9197);
 }
 
 .avatar {
@@ -241,7 +241,7 @@
 
 .report-section {
     margin-top: 50px;
-} 
+}
 
 .journal-card {
     .card-title {
@@ -308,5 +308,85 @@
 
     .artist-names a {
         color: grey;
+    }
+}
+
+.food-and-drinks {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 2px 2px 8px #ccc;
+
+    .section {
+        margin-bottom: 50px;
+        padding-bottom: 25px;
+        border-bottom: 1px solid #e2e2e2;
+
+        .section-heading {
+            letter-spacing: 1px;
+            margin-bottom: 15px;
+        }
+
+        .section-items-list {
+            .section-item,
+            .totals {
+                display: flex;
+                flex-wrap: wrap;
+
+                > * {
+                    width: 33%;
+                    flex: 1 0 33%;
+                    max-width: 33%;
+                    padding: 10px 0;
+
+                    &:nth-child(1) {
+                        font-size: 16px;
+                    }
+
+                    &:nth-child(3) {
+                        text-decoration: underline;
+                    }
+                }
+            }
+
+            .totals {
+                margin-top: 25px;
+
+                > * {
+                    font-weight: bold;
+
+                    &:nth-child(3) {
+                        text-decoration: none;
+                    }
+                }
+            }
+        }
+    }
+}
+
+.add-entry,
+.add-food-or-drink {
+    text-align: center;
+}
+
+.add-food-or-drink {
+    margin-top: 50px;
+}
+
+.modals-holder {
+    .modal-dialog {
+        max-width: 950px !important;
+
+        .form-row {
+            margin-bottom: 10px;
+        }
+
+        .form-row-section {
+            padding-top: 25px;
+
+            .form-row-heading {
+                font-weight: 900;
+            }
+        }
     }
 }

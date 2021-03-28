@@ -34,9 +34,9 @@ class MusicLibraryController extends Controller
 
     /**
      * Show the library view
-     * 
+     *
      * @param \Illuminate\Http\Request $request
-     * 
+     *
      * @return \Illuminate\View\View
      */
     public function index(Request $request): View
@@ -44,7 +44,7 @@ class MusicLibraryController extends Controller
         $data = [];
 
         if (empty($request->from) && empty($request->range)) {
-            
+
             // Get data since start
             $data = [
                 'title'                 => 'Library',
@@ -55,6 +55,7 @@ class MusicLibraryController extends Controller
                 'paginatedPlayedTracks' => $this->playedTrackRepository->all(25),
                 'averagePlaysPerDay'    => $this->playedTrackRepository->calculateAveragePlays('total'),
                 'yearlyTrackCount'      => $this->playedTrackRepository->getPlayedTracksCount('yearly'),
+                'totalPlayedTracks'     => count($this->playedTrackRepository->all()),
                 'requestType'           => 'library'
             ];
 
@@ -81,7 +82,7 @@ class MusicLibraryController extends Controller
             ];
 
         } elseif (!empty($request->from) && $request->range == 'day') {
-            
+
             // Get data from selected day
             $data = [
                 'tracks'                => $this->playedTrackRepository->all(),

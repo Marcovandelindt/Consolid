@@ -15,6 +15,10 @@
             <i class="fas fa-book sidebar-icon"></i>
             <span class="item-name">Journal</span>
         </a>
+        <a href="{{ route('food_drinks') }}" class="list-group-item list-group-item-action bg-light">
+            <i class="fas fa-utensils sidebar-icon"></i>
+            <span class="item-name">Food & Drinks</span>
+        </a>
         <a href="{{ route('home') }}" class="list-group-item list-group-item-action bg-light">
             <i class="fas fa-running sidebar-icon"></i>
             <span class="item-name">Activity</span>
