@@ -4,6 +4,8 @@
 // Variables
 @import 'variables';
 
+@import 'hierach-select';
+
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
 
@@ -311,82 +313,42 @@
     }
 }
 
-.food-and-drinks {
-    background-color: #fff;
-    padding: 20px;
-    border-radius: 5px;
-    box-shadow: 2px 2px 8px #ccc;
-
-    .section {
-        margin-bottom: 50px;
-        padding-bottom: 25px;
-        border-bottom: 1px solid #e2e2e2;
-
-        .section-heading {
+.top-items-bar {
+    margin-top: 50px;
+    .item {
+        h3 {
+            color: #757575;
+            font-weight: 400;
+            text-transform: uppercase;
             letter-spacing: 1px;
-            margin-bottom: 15px;
-        }
-
-        .section-items-list {
-            .section-item,
-            .totals {
-                display: flex;
-                flex-wrap: wrap;
-
-                > * {
-                    width: 33%;
-                    flex: 1 0 33%;
-                    max-width: 33%;
-                    padding: 10px 0;
-
-                    &:nth-child(1) {
-                        font-size: 16px;
-                    }
-
-                    &:nth-child(3) {
-                        text-decoration: underline;
-                    }
-                }
-            }
-
-            .totals {
-                margin-top: 25px;
-
-                > * {
-                    font-weight: bold;
-
-                    &:nth-child(3) {
-                        text-decoration: none;
-                    }
-                }
-            }
         }
     }
 }
 
-.add-entry,
-.add-food-or-drink {
-    text-align: center;
+.entries-overview {
+    margin-top: 50px;
+
+    .entry-section {
+        margin-bottom: 50px;
+    }
 }
 
-.add-food-or-drink {
+.side-holder {
     margin-top: 50px;
 }
 
-.modals-holder {
-    .modal-dialog {
-        max-width: 950px !important;
+.add-item-modal {
 
-        .form-row {
-            margin-bottom: 10px;
-        }
-
-        .form-row-section {
-            padding-top: 25px;
-
-            .form-row-heading {
-                font-weight: 900;
-            }
-        }
+    .form-row-section,
+    .form-section {
+        margin-top: 25px;
     }
+
+    .form-row {
+        margin-top: 10px;
+    }
+}
+
+#food-type-select-button {
+    width: 100%;
 }

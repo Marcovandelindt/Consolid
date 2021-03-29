@@ -1,4 +1,44 @@
 @import url(https://fonts.googleapis.com/css?family=Nunito);
+.hierarchy-select.dropdown .hs-searchbox {
+  padding: 0 5px 4px;
+}
+
+.hierarchy-select.dropdown .dropdown-menu a[data-level='2'] {
+  padding-left: 40px;
+}
+
+.hierarchy-select.dropdown .dropdown-menu a[data-level='3'] {
+  padding-left: 60px;
+}
+
+.hierarchy-select.dropdown .dropdown-menu a[data-level='4'] {
+  padding-left: 80px;
+}
+
+.hierarchy-select.dropdown .dropdown-menu a[data-level='5'] {
+  padding-left: 100px;
+}
+
+.hierarchy-select.dropdown .dropdown-menu a[data-level='6'] {
+  padding-left: 120px;
+}
+
+.hierarchy-select.dropdown .dropdown-menu a[data-level='7'] {
+  padding-left: 140px;
+}
+
+.hierarchy-select.dropdown .dropdown-menu a[data-level='8'] {
+  padding-left: 160px;
+}
+
+.hierarchy-select.dropdown .dropdown-menu a[data-level='9'] {
+  padding-left: 180px;
+}
+
+.hierarchy-select.dropdown .dropdown-menu a[data-level='10'] {
+  padding-left: 200px;
+}
+
 /*!
  * Bootstrap v4.5.3 (https://getbootstrap.com/)
  * Copyright 2011-2020 The Bootstrap Authors
@@ -10010,82 +10050,39 @@ a.text-dark:hover, a.text-dark:focus {
   color: grey;
 }
 
-.food-and-drinks {
-  background-color: #fff;
-  padding: 20px;
-  border-radius: 5px;
-  box-shadow: 2px 2px 8px #ccc;
-}
-
-.food-and-drinks .section {
-  margin-bottom: 50px;
-  padding-bottom: 25px;
-  border-bottom: 1px solid #e2e2e2;
-}
-
-.food-and-drinks .section .section-heading {
-  letter-spacing: 1px;
-  margin-bottom: 15px;
-}
-
-.food-and-drinks .section .section-items-list .section-item,
-.food-and-drinks .section .section-items-list .totals {
-  display: flex;
-  flex-wrap: wrap;
-}
-
-.food-and-drinks .section .section-items-list .section-item > *,
-.food-and-drinks .section .section-items-list .totals > * {
-  width: 33%;
-  flex: 1 0 33%;
-  max-width: 33%;
-  padding: 10px 0;
-}
-
-.food-and-drinks .section .section-items-list .section-item > *:nth-child(1),
-.food-and-drinks .section .section-items-list .totals > *:nth-child(1) {
-  font-size: 16px;
-}
-
-.food-and-drinks .section .section-items-list .section-item > *:nth-child(3),
-.food-and-drinks .section .section-items-list .totals > *:nth-child(3) {
-  text-decoration: underline;
-}
-
-.food-and-drinks .section .section-items-list .totals {
-  margin-top: 25px;
-}
-
-.food-and-drinks .section .section-items-list .totals > * {
-  font-weight: bold;
-}
-
-.food-and-drinks .section .section-items-list .totals > *:nth-child(3) {
-  text-decoration: none;
-}
-
-.add-entry,
-.add-food-or-drink {
-  text-align: center;
-}
-
-.add-food-or-drink {
+.top-items-bar {
   margin-top: 50px;
 }
 
-.modals-holder .modal-dialog {
-  max-width: 950px !important;
+.top-items-bar .item h3 {
+  color: #757575;
+  font-weight: 400;
+  text-transform: uppercase;
+  letter-spacing: 1px;
 }
 
-.modals-holder .modal-dialog .form-row {
-  margin-bottom: 10px;
+.entries-overview {
+  margin-top: 50px;
 }
 
-.modals-holder .modal-dialog .form-row-section {
-  padding-top: 25px;
+.entries-overview .entry-section {
+  margin-bottom: 50px;
 }
 
-.modals-holder .modal-dialog .form-row-section .form-row-heading {
-  font-weight: 900;
+.side-holder {
+  margin-top: 50px;
+}
+
+.add-item-modal .form-row-section,
+.add-item-modal .form-section {
+  margin-top: 25px;
+}
+
+.add-item-modal .form-row {
+  margin-top: 10px;
+}
+
+#food-type-select-button {
+  width: 100%;
 }
 

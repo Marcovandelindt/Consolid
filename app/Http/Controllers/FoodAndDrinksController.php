@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Food;
+use App\Models\FoodType;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
 
@@ -24,10 +25,10 @@ class FoodAndDrinksController extends Controller
     public function index(): View
     {
         $data = [
-            'title' => 'Food and Drinks',
-            'name' => 'food_drinks',
+            'title'     => 'Food and Drinks',
+            'name'      => 'food_drinks',
+            'foodTypes' => FoodType::all(),
         ];
-
         return view('food-and-drinks/index')
             ->with($data);
     }
@@ -39,11 +40,13 @@ class FoodAndDrinksController extends Controller
      */
     public function createFood(Request $request)
     {
-        if (!empty($request->name) && !empty($request->calories)) {
+        if (!empty($request->name)) {
             $food = new Food;
 
             $food->name                 = $request->name;
+            $food->food_type_id         = $request->foodType;
             $food->calories             = $request->calories;
+            $food->portion_size         = $request->portion_size;
             $food->total_fat            = $request->total_fat;
             $food->saturated_fat        = $request->saturated_fat;
             $food->trans_fat            = $request->trans_fat;

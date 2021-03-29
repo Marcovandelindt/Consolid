@@ -3,97 +3,250 @@
 @section('content')
     <div class="row">
         <div class="col-md-12">
-            <div class="page-heading">
+            <div class="page-header">
                 <h1>{{ $title }}</h1>
-                <hr/>
             </div>
         </div>
     </div>
-    <br/><br/>
+
+    <div class="top-items-bar">
+        <div class="row">
+            <div class="col-md-3">
+                <div class="item">
+                    <h3>Overview</h3>
+                    <h2>{{ Auth::user()->name }}</h2>
+                </div>
+            </div>
+
+            <div class="col-md-3">
+                <div class="item">
+                    <h3>Calorie Tracker</h3>
+                    <h2><i class="fas fa-fire"></i> 1672 <small>Cal</small></h2>
+                </div>
+            </div>
+
+            <div class="col-md-3">
+                <div class="item">
+                    <h3>Water Tracker</h3>
+                    <h2><i class="fas fa-tint"></i> 1.3 <small>Liters</small></h2>
+                </div>
+
+            </div>
+
+            <div class="col-md-3">
+                <div class="item">
+                    <h3>Total Logs Today</h3>
+                    <h2><i class="fas fa-list"></i> 12</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <div class="row">
-        <div class="col-md-6">
-            <div class="food-and-drinks">
-                <div class="section breakfast-section">
-                    <div class="section-heading">
-                        <h3>Breakfast</h3>
+        <div class="col-md-7">
+            <div class="entries-overview">
+                <div class="card">
+                    <div class="card-header">
+                        <h3>Todays Overview</h3>
                     </div>
-                    <div class="section-content">
-                        <div class="section-items-list">
-                            <div class="section-item">
-                                <div class="item">Waldkorn Brood</div>
-                                <div class="amount">35 Gram</div>
-                                <div class="calories">85 Calories</div>
+                    <div class="card-body">
+                        <div class="entry-section">
+                            <h4>Breakfast</h4>
+                            <table class="table table-striped">
+                                <thead>
+                                <tr>
+                                    <th>Type</th>
+                                    <th>Name</th>
+                                    <th>Amount</th>
+                                    <th>Calories</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr>
+                                    <td>Bread</td>
+                                    <td>Waldkorn Brood</td>
+                                    <td>35 gram</td>
+                                    <td>60</td>
+                                </tr>
+                                <tr>
+                                    <td>Butter</td>
+                                    <td>Eat plants free of palm</td>
+                                    <td>5 gram</td>
+                                    <td>27</td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="entry-section">
+                            <h4>Lunch</h4>
+                            <table class="table table-striped">
+                                <thead>
+                                <tr>
+                                    <th>Type</th>
+                                    <th>Name</th>
+                                    <th>Amount</th>
+                                    <th>Calories</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr>
+                                    <td>Bread</td>
+                                    <td>Lidl Bruin Brood</td>
+                                    <td>35 gram</td>
+                                    <td>60</td>
+                                </tr>
+                                <tr>
+                                    <td>Butter</td>
+                                    <td>Eat plants free of palm</td>
+                                    <td>5 gram</td>
+                                    <td>27</td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="entry-section">
+                            <h4>Dinner</h4>
+                            <table class="table table-striped">
+                                <thead>
+                                <tr>
+                                    <th>Type</th>
+                                    <th>Name</th>
+                                    <th>Amount</th>
+                                    <th>Calories</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr>
+                                    <td>Rijst</td>
+                                    <td>Rijst</td>
+                                    <td>100 gram</td>
+                                    <td>120</td>
+                                </tr>
+                                <tr>
+                                    <td>Kip Tandoori</td>
+                                    <td>Kip Tandoori</td>
+                                    <td>100 gram</td>
+                                    <td>150</td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="entry-section">
+                            <h4>Snacks</h4>
+                            <table class="table table-striped">
+                                <thead>
+                                <tr>
+                                    <th>Type</th>
+                                    <th>Name</th>
+                                    <th>Amount</th>
+                                    <th>Calories</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr>
+                                    <td colspan="4">No snacks yet...</td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="entry-section">
+                            <h4>Drinks</h4>
+                            <table class="table table-striped">
+                                <thead>
+                                <tr>
+                                    <th>Type</th>
+                                    <th>Name</th>
+                                    <th>Amount</th>
+                                    <th>Calories</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr>
+                                    <td>Coffee</td>
+                                    <td>Koffie</td>
+                                    <td>100 ml</td>
+                                    <td>1</td>
+                                </tr>
+                                <tr>
+                                    <td>Water</td>
+                                    <td>Water</td>
+                                    <td>250 ml</td>
+                                    <td>0</td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-5">
+            <div class="side-holder">
+                <div class="card">
+                    <div class="card-header">
+                        <h3>Water Intake Today</h3>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <h4>Goal</h4>
+                                <p>2500 ml</p>
                             </div>
-                            <div class="section-item">
-                                <div class="item">Filet American</div>
-                                <div class="amount">15 Gram</div>
-                                <div class="calories">45 Calories</div>
+                            <div class="col-md-6">
+                                <h4>Current</h4>
+                                <p>1700 ml</p>
                             </div>
-                            <div class="section-item">
-                                <div class="item">G'woon Boter</div>
-                                <div class="amount">5 Gram</div>
-                                <div class="calories">12 Calories</div>
-                            </div>
-                            <div class="totals">
-                                <div>Total</div>
-                                <div>55 Gram</div>
-                                <div>142 Calories</div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <form method="POST" action="">
+                                    @csrf
+                                    <div class="form-row">
+                                        <div class="col-8">
+                                            <input type="text" class="form-control" id="waterAmount" name="waterAmount"
+                                                   placeholder="Track your water" value="{{ old('waterAmount') }}"/>
+                                        </div>
+                                        <div class="col-4">
+                                            <input type="text" class="form-control" readonly id="amount" name="amount"
+                                                   placeholder="ML"/>
+                                        </div>
+                                    </div>
+                                    <div class="form-row mt-4">
+                                        <div class="col">
+                                            <input type="submit" class="btn btn-success" value="Track your water"/>
+                                        </div>
+                                    </div>
+                                </form>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="section lunch-section">
-                    <div class="section-heading">
-                        <h3>Lunch</h3>
+                <div class="card mt-4">
+                    <div class="card-header">
+                        <h3>New Food or Drink</h3>
                     </div>
-                    <div class="section-content">
-                        Lunch Content
-                    </div>
-                </div>
-                <div class="section dinner-section">
-                    <div class="section-heading">
-                        <h3>Dinner</h3>
-                    </div>
-                    <div class="section-content">
-                        Dinner Content
-                    </div>
-                </div>
-                <div class="section snacks-section">
-                    <div class="section-heading">
-                        <h3>Snacks</h3>
-                    </div>
-                    <div class="section-content">
-                        Snacks Content
+                    <div class="card-body">
+                        <p>Here, you can add a new food or drink!</p>
+                        <div class="row">
+                            <div class="col">
+                                <button class="btn btn-primary add-food-btn w-100" data-toggle="modal"
+                                        data-target="#addFoodModal">
+                                    Add Food
+                                </button>
+                            </div>
+                            <div class="col">
+                                <a class="btn btn-secondary w-100">Add new drink</a>
+                            </div>
+                        </div>
                     </div>
                 </div>
-                <div class="section drinks-section">
-                    <div class="section-heading">
-                        <h3>Drinks</h3>
-                    </div>
-                    <div class="section-content">
-                        Drink Content
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-6">
-            <div class="add-entry">
-                <h3>Add Entry</h3>
-                <button class="btn btn-primary add-food-entry-btn">Food</button>
-                <button class="btn btn-primary add-drink-entry-btn">Drink</button>
-            </div>
-            <hr/>
-            <div class="add-food-or-drink">
-                <h3>Add Food or Drink</h3>
-                <button class="btn btn-primary add-food-btn" data-toggle="modal" data-target="#addFoodModal">Food
-                </button>
-                <button class="btn btn-primary add-drink-btn">Drink</button>
             </div>
         </div>
     </div>
 
     <div class="modals-holder">
-        <div class="modal fade" id="addFoodModal" tabindex="-1" role="dialog" aria-labelledby="addFoodModalLabel"
+        <div class="modal fade add-item-modal" id="addFoodModal" tabindex="-1" role="dialog"
+             aria-labelledby="addFoodModalLabel"
              aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
@@ -111,8 +264,37 @@
                                     <input type="text" name="name" class="form-control" placeholder="Name" id="name"
                                            value="{{ old('name') }}">
                                 </div>
+                                <div class="col">
+                                    <input type="text" name="portion_size" class="form-control" id="portion-size"
+                                           placeholder="Portion size" value="{{ old('portion_size') }}"/>
+                                </div>
                             </div>
                             <div class="form-row">
+                                <div class="col">
+                                    <div class="dropdown hierarchy-select" id="foodTypeSelect">
+                                        <button type="button" class="btn btn-secondary dropdown-toggle"
+                                                id="food-type-select-button" data-toggle="dropdown" aria-haspopup="true"
+                                                aria-expanded="false"></button>
+                                        <div class="dropdown-menu" aria-labelledby="example-two-button">
+                                            <div class="hs-searchbox">
+                                                <input type="text" class="form-control" autocomplete="off">
+                                            </div>
+                                            <div class="hs-menu-inner">
+                                                <a class="dropdown-item" data-value="" data-default-selected=""
+                                                   href="#">Choose a Food type</a>
+                                                <input type="hidden" name="foodType" id="hiddenFoodType" value=""/>
+                                                @if (!empty($foodTypes))
+                                                    @foreach ($foodTypes as $foodType)
+                                                        <a class="dropdown-item" data-value="{{ $foodType->id }}"
+                                                           href="#">{{ $foodType->name }}</a>
+                                                    @endforeach
+                                                @endif
+                                            </div>
+                                        </div>
+                                        <input class="d-none" name="example_two" readonly="readonly" aria-hidden="true"
+                                               type="text"/>
+                                    </div>
+                                </div>
                                 <div class="col">
                                     <input type="text" name="calories" class="form-control" placeholder="Calories"
                                            id="calories" value="{{ old('calories') }}">
@@ -150,111 +332,115 @@
                                                value="{{ old('monounsaturated_fat') }}">
                                     </div>
                                 </div>
+                            </div>
 
-                                <div class="form-section">
-                                    <div class="form-row">
-                                        <div class="col">
-                                            <input type="text" name="cholesterol" class="form-control"
-                                                   placeholder="Cholesterol" id="cholesterol"
-                                                   value="{{ old('cholesterol') }}">
-                                        </div>
-                                        <div class="col">
-                                            <input type="text" name="sodium" class="form-control"
-                                                   placeholder="Sodium" id="sodium"
-                                                   value="{{ old('sodium') }}">
-                                        </div>
+                            <div class="form-section">
+                                <div class="form-row">
+                                    <div class="col">
+                                        <input type="text" name="cholesterol" class="form-control"
+                                               placeholder="Cholesterol" id="cholesterol"
+                                               value="{{ old('cholesterol') }}">
+                                    </div>
+                                    <div class="col">
+                                        <input type="text" name="sodium" class="form-control"
+                                               placeholder="Sodium" id="sodium"
+                                               value="{{ old('sodium') }}">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-row-section">
+                                <div class="form-row-heading">
+                                    <h5>Carbonhydrates</h5>
+                                </div>
+                                <div class="form-row">
+                                    <div class="col">
+                                        <input type="text" name="total_carbonhydrates" class="form-control"
+                                               placeholder="Total carbonhydrates" id="total_carbonhydrates"
+                                               value="{{ old('total_carbonhydrates') }}">
+                                    </div>
+                                    <div class="col">
+                                        <input type="text" name="dietary_fiber" class="form-control"
+                                               placeholder="Dietary fiber" id="dietary_fiber"
+                                               value="{{ old('dietary_fiber') }}">
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="col">
+                                        <input type="text" name="sugar" class="form-control"
+                                               placeholder="Sugar" id="sugar"
+                                               value="{{ old('sugar') }}">
+                                    </div>
+                                    <div class="col">
+                                        <input type="text" name="addded_sugars" class="form-control"
+                                               placeholder="Added sugars" id="addded_sugars"
+                                               value="{{ old('addded_sugars') }}">
+                                    </div>
+                                    <div class="col">
+                                        <input type="text" name="sugar_alcohols" class="form-control"
+                                               placeholder="Sugar alcohols" id="sugar_alcohols"
+                                               value="{{ old('sugar_alcohols') }}">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-row-section">
+                                <div class="form-row">
+                                    <div class="col">
+                                        <input type="text" name="protein" class="form-control"
+                                               placeholder="Protein" id="protein"
+                                               value="{{ old('protein') }}">
+                                    </div>
+                                    <div class="col">
+                                        <input type="text" name="calcium" class="form-control"
+                                               placeholder="Calcium" id="calcium"
+                                               value="{{ old('calcium') }}">
+                                    </div>
+                                    <div class="col">
+                                        <input type="text" name="iron" class="form-control"
+                                               placeholder="Iron" id="iron"
+                                               value="{{ old('iron') }}">
+                                    </div>
+                                    <div class="col">
+                                        <input type="text" name="potassium" class="form-control"
+                                               placeholder="Potassium" id="potassium"
+                                               value="{{ old('potassium') }}">
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="col">
+                                        <input type="text" name="vitamin_d" class="form-control"
+                                               placeholder="Vitamin D" id="vitamin_d"
+                                               value="{{ old('vitamin_d') }}">
+                                    </div>
+                                    <div class="col">
+                                        <input type="text" name="vitamin_a_percentage" class="form-control"
+                                               placeholder="Vitamin A" id="vitamin_a_percentage"
+                                               value="{{ old('vitamin_a_percentage') }}">
+                                    </div>
+                                    <div class="col">
+                                        <input type="text" name="vitamin_c_percentage" class="form-control"
+                                               placeholder="Vitamin C" id="vitamin_c_percentage"
+                                               value="{{ old('vitamin_c_percentage') }}">
                                     </div>
                                 </div>
 
                                 <div class="form-row-section">
-                                    <div class="form-row-heading">
-                                        <h5>Carbonhydrates</h5>
-                                    </div>
                                     <div class="form-row">
                                         <div class="col">
-                                            <input type="text" name="total_carbonhydrates" class="form-control"
-                                                   placeholder="Total carbonhydrates" id="total_carbonhydrates"
-                                                   value="{{ old('total_carbonhydrates') }}">
-                                        </div>
-                                        <div class="col">
-                                            <input type="text" name="dietary_fiber" class="form-control"
-                                                   placeholder="Dietary fiber" id="dietary_fiber"
-                                                   value="{{ old('dietary_fiber') }}">
-                                        </div>
-                                    </div>
-                                    <div class="form-row">
-                                        <div class="col">
-                                            <input type="text" name="sugar" class="form-control"
-                                                   placeholder="Sugar" id="sugar"
-                                                   value="{{ old('sugar') }}">
-                                        </div>
-                                        <div class="col">
-                                            <input type="text" name="addded_sugars" class="form-control"
-                                                   placeholder="Added sugars" id="addded_sugars"
-                                                   value="{{ old('addded_sugars') }}">
-                                        </div>
-                                        <div class="col">
-                                            <input type="text" name="sugar_alcohols" class="form-control"
-                                                   placeholder="Sugar alcohols" id="sugar_alcohols"
-                                                   value="{{ old('sugar_alcohols') }}">
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="form-row-section">
-                                    <div class="form-row">
-                                        <div class="col">
-                                            <input type="text" name="protein" class="form-control"
-                                                   placeholder="Protein" id="protein"
-                                                   value="{{ old('protein') }}">
-                                        </div>
-                                        <div class="col">
-                                            <input type="text" name="calcium" class="form-control"
-                                                   placeholder="Calcium" id="calcium"
-                                                   value="{{ old('calcium') }}">
-                                        </div>
-                                        <div class="col">
-                                            <input type="text" name="iron" class="form-control"
-                                                   placeholder="Iron" id="iron"
-                                                   value="{{ old('iron') }}">
-                                        </div>
-                                        <div class="col">
-                                            <input type="text" name="potassium" class="form-control"
-                                                   placeholder="Potassium" id="potassium"
-                                                   value="{{ old('potassium') }}">
-                                        </div>
-                                    </div>
-                                    <div class="form-row">
-                                        <div class="col">
-                                            <input type="text" name="vitamin_d" class="form-control"
-                                                   placeholder="Vitamin D" id="vitamin_d"
-                                                   value="{{ old('vitamin_d') }}">
-                                        </div>
-                                        <div class="col">
-                                            <input type="text" name="vitamin_a_percentage" class="form-control"
-                                                   placeholder="Vitamin A" id="vitamin_a_percentage"
-                                                   value="{{ old('vitamin_a_percentage') }}">
-                                        </div>
-                                        <div class="col">
-                                            <input type="text" name="vitamin_c_percentage" class="form-control"
-                                                   placeholder="Vitamin C" id="vitamin_c_percentage"
-                                            value="{{ old('vitamin_c_percentage') }}">
-                                        </div>
-                                    </div>
-
-                                    <div class="form-row-section">
-                                        <div class="form-row">
-                                            <div class="col">
-                                                <input type="submit" class="btn btn-primary" value="Save!"/>
-                                            </div>
+                                            <input type="submit" class="btn btn-primary" value="Save!"/>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                        </form>
                     </div>
+                    </form>
                 </div>
             </div>
         </div>
     </div>
+
+    <script type="text/javascript">
+
+    </script>
 @endsection
