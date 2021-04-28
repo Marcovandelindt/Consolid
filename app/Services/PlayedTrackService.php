@@ -7,17 +7,17 @@ use Illuminate\Support\Facades\DB;
 use App\Models\PlayedTrack;
 use App\Models\Track;
 
-class PlayedTrackService 
+class PlayedTrackService
 {
     /**
      * Save a played track
-     * 
+     *
      * @param object $data
      * @param \App\Models\Track $track
-     * 
+     *
      * @return void
      */
-    public function savePlayedTrack($data, Track $track): void 
+    public function savePlayedTrack($data, Track $track): void
     {
         $playedTrack = new PlayedTrack;
 
@@ -25,23 +25,23 @@ class PlayedTrackService
         $playedTrack->played_from = (!empty($data->context->type) ? $data->context->type : '');
         $playedTrack->played_at   = strtotime($data->played_at);
         $playedTrack->played_date = date('Y-m-d', strtotime($data->played_at));
-        $playedTrack->time        = date('H:i', strtotime('+1 hour', strtotime($data->played_at)));
+        $playedTrack->time        = date('H:i', strtotime('+2 hours', strtotime($data->played_at)));
 
         $playedTrack->save();
     }
 
     /**
      * Calculate the total listning time
-     * 
+     *
      * @param array $playedTracks
      * @param bool  $formatted
-     * 
+     *
      * @return $string
      */
     public function calculateListeningTime($playedTracks, $formatted = false)
     {
         $time = 0;
-        
+
         if (!empty($playedTracks)) {
             foreach ($playedTracks as $playedTrack) {
                 $time = $time + $playedTrack->track->duration_ms;

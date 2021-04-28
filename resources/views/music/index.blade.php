@@ -46,7 +46,7 @@
                                             @endforeach
                                         </h4>
                                         <span class="track-name">{{ $playedTrack->track->name }}</span>
-                                        <span class="float-right played-time">{{ date('H:i', ($playedTrack->played_at + 60 * 60)) }}</span>
+                                        <span class="float-right played-time">{{ $playedTrack->time }}</span>
                                     </div>
                                 </div>
                             @endforeach
